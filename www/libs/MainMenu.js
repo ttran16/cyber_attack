@@ -15,7 +15,7 @@ PhaserGame.MainMenu.prototype = {
         mainMenuVideo = this.game.add.video('BG-MainMenuVideo');
         mainMenuVideo.addToWorld(0, 0, 0, 0, this.game.width/this.game.game_config.main_menu_bg_video.width, this.game.height/this.game.game_config.main_menu_bg_video.height);
         
-        mainMenuVideo.play(true);
+        mainMenuVideo.play();
         text = this.add.text(this.world.centerX, this.world.centerY-100, 'Select an option:', { font: "20pt Michroma", fill: "#ffffff", stroke: "#cccccc", strokeThickness: 0 });
         text.anchor.set(0.5);
         
@@ -71,9 +71,14 @@ PhaserGame.MainMenu.prototype = {
     },
 	update: function() {
 		mainMenuVideo.play();
-		
+		music.volume = 0.2;
+		console.log("main menu update");
 	},
-
+	pauseUpdate: function () {
+		music.volume = 0.0;
+    }
+    ,
+	
     startArcade: function () {
         this.game.SETUP_GameLevel = 1;
         this.game.SETUP_GameStyle = 'Arcade';

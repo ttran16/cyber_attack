@@ -92,6 +92,9 @@ PhaserGame.Intro.prototype = {
 
     },
     
+	pauseUpdate: function () {
+		music.volume = 0.0;
+    },
     
     startGame: function(pointer) {
         this.game.state.start('MainMenu');
