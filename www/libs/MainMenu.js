@@ -13,9 +13,9 @@ PhaserGame.MainMenu.prototype = {
     create: function () {
         
         mainMenuVideo = this.game.add.video('BG-MainMenuVideo');
-        mainMenuVideo.play(true);
         mainMenuVideo.addToWorld(0, 0, 0, 0, this.game.width/this.game.game_config.main_menu_bg_video.width, this.game.height/this.game.game_config.main_menu_bg_video.height);
         
+        mainMenuVideo.play(true);
         text = this.add.text(this.world.centerX, this.world.centerY-100, 'Select an option:', { font: "20pt Michroma", fill: "#ffffff", stroke: "#cccccc", strokeThickness: 0 });
         text.anchor.set(0.5);
         

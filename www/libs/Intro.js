@@ -33,11 +33,11 @@ PhaserGame.Intro.prototype = {
         music.play();
                 
         titleVideo = this.game.add.video('BG-TitleVideo');
-        titleVideo.play();
         titleVideo.addToWorld(0, 0, 0, 0, this.game.width/this.game.game_config.intro_video.width, this.game.height/this.game.game_config.intro_video.height);
         
         titleScreen = this.add.sprite(0, 0, 'BG-MainMenu');
 		
+        titleVideo.play();
 		titleScreen.width=this.game.width;
 		titleScreen.height=this.game.height;
 		

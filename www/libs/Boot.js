@@ -88,25 +88,10 @@ PhaserGame.Boot.prototype = {
 	
     enterIncorrectOrientation: function () {
 
-		console.log("portrait");
-        document.getElementById('orientation').style.display = 'block';
-		
-        document.getElementById('orientation').style.width = window.innerWidth;
-		
-        document.getElementById('orientation').style.height = window.innerHeight;
-		console.log('width ' + window.innerWidth);
 
     },
 
     leaveIncorrectOrientation: function () {
-
-		console.log("landscape");
-        document.getElementById('orientation').style.display = 'none';
-        document.getElementById('orientation').style.width = window.innerWidth;
-		
-        document.getElementById('orientation').style.height = window.innerHeight;
-		console.log('width ' + window.innerWidth);
-
 
     }
 
