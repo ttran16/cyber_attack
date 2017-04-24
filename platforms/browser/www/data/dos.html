@@ -1,0 +1,152 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>Cyber Attack Answer Key</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script>
+		$(document).ready(function(){
+			var index = $('#level').find('option:selected').attr('value');
+			get_data(index);
+		
+			$('#level').change(function(){
+				console.log($(this).find('option:selected').attr('value'));
+				index = $(this).find('option:selected').attr('value');
+				
+				get_data(index);
+			});
+		});
+		function get_image(id,index)
+		{
+			return '<img src="../eqimages/' + index + '/' + id + '.png"></img>';
+		}
+		function get_data(index)
+		{
+		
+			$('#container').html('');
+			var counter = 0;
+			$.ajax({
+				type: "GET",
+				url: "questions" + index + ".js",
+				dataType: "xml",
+				success: function(xml) {
+					$(xml).find('questionSet').each(function(){
+						counter++;
+						var my_div = $('#template').clone();
+						my_div.attr('id','');
+						my_div.find('.question_id').html($(this).find('question').text() + ' (correct=' + $(this).find('ca').text() + ')');
+						
+						my_div.find('.question').html(get_image($(this).find('question').text(),index));						
+						my_div.find('.a1').html(get_image($(this).find('a1').text(),index));
+						my_div.find('.a2').html(get_image($(this).find('a2').text(),index));
+						my_div.find('.a3').html(get_image($(this).find('a3').text(),index));
+						my_div.find('.a4').html(get_image($(this).find('a4').text(),index));
+						my_div.find('.a' + $(this).find('ca').text()).addClass('correct');
+						
+						$('#container').append(my_div);
+					});
+					console.log(counter + ' items loaded');
+				},
+				failure: function()
+				{
+					console.log('load failed');
+				}
+			});
+		}
+		
+		
+		
+	</script>
+</head>
+
+
+<style>
+	#template
+	{
+		display:none;
+		
+	}
+	.answer
+	{
+		border:thin dashed #333;
+		padding: 5px;
+	}
+	.template
+	{
+		border:double #ff0;
+		display: block;
+		position:relative;
+		max-width:930px;
+		margin:auto;
+		background-color:#008;
+		margin-bottom:20px;
+	}
+	
+	.correct
+	{
+		background-color:#800;
+	}
+	img
+	{
+		vertical-align:top;
+	}
+	#selector
+	{
+	
+		text-align:center;
+		padding: 10px
+	}
+	#selector select
+	{
+		font-size:20px;
+	}
+	.question_id
+	{
+		border-bottom:double #ff0;
+		font-weight:bold;
+		background-color:#088;
+		padding:5px;
+		text-align:center;
+	}
+	.question
+	{
+		padding:10px;
+	}
+	body
+	{
+		background-color:#000;
+		color:#ffff00;
+		font-family:"Courier New", Courier, monospace;
+	}
+	#container{
+		background-color:#0ee;
+		border:thick solid #fff;
+	}
+</style>
+<body >
+<div id="selector">
+<h1>Cyber Security Answer Key</h1>
+<select id="level">
+	<option value="1">Level 1</option>
+	<option value="2">Level 2</option>
+	<option value="3">Level 3</option>
+	<option value="4">Level 4</option>
+</select>
+</div>
+<div id="template" class="template">
+	<div class="question_id"></div>
+	<div class="question"></div>
+	<ol>
+		<li class="answer a1"></li>
+		<li class="answer a2"></li>
+		<li class="answer a3"></li>
+		<li class="answer a4"></li>
+	</ol>
+</div>
+<div id="container">
+</div>
+General failure reading drive A:
+<br/>
+Insert Floppy Disk (5 of 67) in Drive A:<br/> Press any key to continue...<br/>
+</body>
+</html>

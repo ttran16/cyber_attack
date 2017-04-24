@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xmlData>
+<setup>
+    <playerHubImage>OilPlatform</playerHubImage>
+    <playerHubX>150</playerHubX>
+    <playerHubY>275</playerHubY>
+	<missileRateLow>4</missileRateLow>
+	<missileRateHigh>8</missileRateHigh>
+    <missileDamage>.25</missileDamage>
+</setup>
+<attackHubs>
+	<hubLocation>
+		<x>600</x>
+		<y>650</y>
+        <dmg>3</dmg>
+	</hubLocation>
+	<hubLocation>
+		<x>800</x>
+		<y>275</y>
+		<dmg>3</dmg>
+	</hubLocation>
+	<hubLocation>
+		<x>225</x>
+		<y>150</y>
+        <dmg>3</dmg>
+	</hubLocation>
+	<hubLocation>
+		<x>165</x>
+		<y>510</y>
+        <dmg>3</dmg>
+	</hubLocation>
+</attackHubs>
+</xmlData>

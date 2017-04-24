@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xmlData>
+<setup>
+    <playerHubImage>PowerPlant</playerHubImage>
+    <playerHubX>450</playerHubX>
+    <playerHubY>580</playerHubY>
+	<missileRateLow>4</missileRateLow>
+	<missileRateHigh>8</missileRateHigh>
+    <missileDamage>.15</missileDamage>
+</setup>
+<attackHubs>
+	<hubLocation>
+		<x>275</x>
+		<y>550</y>
+        <dmg>3</dmg>
+	</hubLocation>
+	<hubLocation>
+		<x>840</x>
+		<y>400</y>
+		<dmg>3</dmg>
+	</hubLocation>
+	<hubLocation>
+		<x>700</x>
+		<y>125</y>
+        <dmg>3</dmg>
+	</hubLocation>
+	<hubLocation>
+		<x>275</x>
+		<y>200</y>
+        <dmg>3</dmg>
+	</hubLocation>
+</attackHubs>
+</xmlData>

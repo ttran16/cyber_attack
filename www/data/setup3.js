@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xmlData>
+<setup>
+    <playerHubImage>Casino</playerHubImage>
+    <playerHubX>680</playerHubX>
+    <playerHubY>430</playerHubY>
+	<missileRateLow>4</missileRateLow>
+	<missileRateHigh>8</missileRateHigh>
+    <missileDamage>.2</missileDamage>
+</setup>
+<attackHubs>
+	<hubLocation>
+		<x>800</x>
+		<y>125</y>
+        <dmg>3</dmg>
+	</hubLocation>
+	<hubLocation>
+		<x>840</x>
+		<y>570</y>
+		<dmg>3</dmg>
+	</hubLocation>
+	<hubLocation>
+		<x>480</x>
+		<y>460</y>
+        <dmg>3</dmg>
+	</hubLocation>
+	<hubLocation>
+		<x>450</x>
+		<y>220</y>
+        <dmg>3</dmg>
+	</hubLocation>
+</attackHubs>
+</xmlData>

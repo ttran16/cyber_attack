@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xmlData>
+<setup>
+    <playerHubImage>Bank</playerHubImage>
+    <playerHubX>580</playerHubX>
+    <playerHubY>210</playerHubY>
+	<missileRateLow>4</missileRateLow>
+	<missileRateHigh>8</missileRateHigh>
+    <missileDamage>0.3</missileDamage>
+</setup>
+<attackHubs>
+	<hubLocation>
+		<x>244</x>
+		<y>175</y>
+        <dmg>3</dmg>
+	</hubLocation>
+	<hubLocation>
+		<x>530</x>
+		<y>600</y>
+		<dmg>3</dmg>
+	</hubLocation>
+	<hubLocation>
+		<x>905</x>
+		<y>575</y>
+        <dmg>3</dmg>
+	</hubLocation>
+	<hubLocation>
+		<x>341</x>
+		<y>310</y>
+        <dmg>3</dmg>
+	</hubLocation>
+</attackHubs>
+</xmlData>

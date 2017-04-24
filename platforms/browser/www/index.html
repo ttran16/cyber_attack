@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8" />
+	<title>Cyber Attack</title>
+	<script src="libs/phaser.min.js"></script>
+    <script src="libs/Config.js"></script>
+    <script src="libs/Boot.js"></script>
+    <script src="libs/Preloader.js"></script>
+    <script src="libs/Intro.js"></script>
+    <script src="libs/MainMenu.js"></script>
+    <script src="libs/Instructions.js"></script>
+    <script src="libs/LevelPreload.js"></script>
+    <script src="libs/LevelIntro.js"></script>
+    <script src="libs/LevelPlay.js"></script>
+    <script src="libs/LevelPlay-Questions.js"></script>
+    <script src="libs/LevelPlay-Hubs.js"></script>
+    <script src="libs/LevelFailure.js"></script>
+    <script src="libs/LevelSuccess.js"></script>
+    <script src="libs/EndLevels.js"></script>
+    <script src="libs/EndGame.js"></script>
+    <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+	<div id="orientation"></div>
+<div id="gameContainer"></div>
+
+<script type="text/javascript">
+
+window.onload = function() {
+	var config = new Config();
+	//	Create your Phaser game and inject it into the gameContainer div.
+	//	We did it in a window.onload event, but you can do it anywhere (requireJS load, anonymous function, jQuery dom ready, - whatever floats your boat)
+	var game = new Phaser.Game(config.canvas.width, config.canvas.height, Phaser.AUTO, 'gameContainer');
+	game['game_config'] = config;
+	//	Add the States your game has.
+	//	You don't have to do this in the html, it could be done in your Boot state too, but for simplicity I'll keep it here.
+	game.state.add('Boot', PhaserGame.Boot);
+	game.state.add('Preloader', PhaserGame.Preloader);
+    game.state.add('Intro', PhaserGame.Intro);
+	game.state.add('MainMenu', PhaserGame.MainMenu);
+    game.state.add('Instructions', PhaserGame.Instructions);
+    game.state.add('LevelPreload', PhaserGame.LevelPreload);
+    game.state.add('LevelIntro', PhaserGame.LevelIntro);
+    game.state.add('LevelPlay', PhaserGame.LevelPlay);
+    game.state.add('LevelSuccess', PhaserGame.LevelSuccess);
+    game.state.add('LevelFailure', PhaserGame.LevelFailure);
+    game.state.add('EndLevels', PhaserGame.EndLevels);
+    game.state.add('EndGame', PhaserGame.EndGame);
+    
+	//	Now start the Boot state.
+	game.state.start('Boot');
+
+};
+
+</script>
+
+</body>
+</html>
