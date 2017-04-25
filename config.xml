@@ -2,14 +2,19 @@
 <widget id="edu.coastline.bdats" version="0.0.92" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Cyber Attack</name>
     <description>
-        A blank PhoneGap app.
+        Cyber Security themed College Entrance Exam Preparation app
     </description>
-    <author email="support@phonegap.com" href="http://phonegap.com">
-        PhoneGap Team
+    <author email="dthompson@coastline.edu" href="http://phonegap.com">
+        BDATS
     </author>
     <content src="index.html" />
     <access origin="*" />
 	<preference name="orientation" value="landscape"/>
 	<preference name="AllowInlineMediaPlayback" value="true"/>  
-	<icon src="icon-96-xhdpi.png" />
+	<icon src="icon-72-hdpi.png" />
+	
+	<icon src="icon-36-ldpi.png" platform="android" qualifier="ldpi" />
+	<icon src="icon-48-mdpi.png" platform="android" qualifier="mdpi" />
+	<icon src="icon-72-hdpi.png" platform="android" qualifier="hdpi" />
+	<icon src="icon-96-xhdpi.png" platform="android" qualifier="xhdpi" />
 </widget>
