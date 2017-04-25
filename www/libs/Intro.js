@@ -15,8 +15,8 @@ PhaserGame.Intro.prototype = {
 		mainMenuScreen = this.add.sprite(this.world.centerX, this.world.centerY, 'BG-MainMenu');
 		mainMenuScreen.width=this.game.width;
 		mainMenuScreen.height=this.game.height;        
-        btn_arcade.inputEnabled = true;
-        btn_arcade.input.useHandCursor = true;
+        mainMenuScreen.inputEnabled = true;
+        mainMenuScreen.input.useHandCursor = true;
         mainMenuScreen.events.onInputDown.addOnce(this.begin,this);
     },
     begin: function(){
