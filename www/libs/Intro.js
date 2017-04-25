@@ -11,9 +11,8 @@ PhaserGame.Intro.prototype = {
 		
         titleVideo = this.game.add.video('BG-TitleVideo');
         titleVideo.addToWorld(0, 0, 0, 0, this.game.width/this.game.game_config.intro_video.width, this.game.height/this.game.game_config.intro_video.height);
-		titleVideo.setTouchLock(false);
+		titleVideo.unlock();
 		titleVideo.play();
-		titleVideo.setTouchLock(false);
         //this.game['mainMenuVideo'] = this.game.add.video('BG-MainMenuVideo');
 	
 	
@@ -96,7 +95,7 @@ PhaserGame.Intro.prototype = {
 
     },
 	update: function() {
-		console.log('touchlock: ' + titleVideo.touchLock);
+		console.log('touchlock: ' + titleVideo.touchLocked);
 	},
 
     nextLine: function () {
