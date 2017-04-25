@@ -5,11 +5,15 @@ PhaserGame.Intro = function (game) {
 PhaserGame.Intro.prototype = {
     
     create: function () {
-        mainMenuScreen = this.add.sprite(this.world.centerX, this.world.centerY, 'BG-MainMenu');;
-        mainMenuScreen.events.onInputDown.addOnce(this.begin,this);
+        //mainMenuScreen = this.add.sprite(this.world.centerX, this.world.centerY, 'BG-MainMenu');;
+        //mainMenuScreen.events.onInputDown.addOnce(this.begin,this);
+		
+        titleVideo = this.game.add.video('BG-TitleVideo');
+        titleVideo.addToWorld(0, 0, 0, 0, this.game.width/this.game.game_config.intro_video.width, this.game.height/this.game.game_config.intro_video.height);
+        titleVideo.play();  
+		titleVideo.events.onInputDown.addOnce(this.begin,this);
     },
     begin: function(){
-		mainMenuScreen.alpha=0;
         //this.startBG;
         this.index = 0;
         this.textTimer;
@@ -37,12 +41,9 @@ PhaserGame.Intro.prototype = {
         music = this.add.audio('MUSIC-Intro');
         music.play();
                 
-        titleVideo = this.game.add.video('BG-TitleVideo');
-        titleVideo.addToWorld(0, 0, 0, 0, this.game.width/this.game.game_config.intro_video.width, this.game.height/this.game.game_config.intro_video.height);
-        
         titleScreen = this.add.sprite(0, 0, 'BG-MainMenu');
 		
-        titleVideo.play();
+
 		titleScreen.width=this.game.width;
 		titleScreen.height=this.game.height;
 		
@@ -79,13 +80,7 @@ PhaserGame.Intro.prototype = {
 
     },
 	update: function() {
-		titleVideo.play();
 		
-		
-		console.log("intro update");
-		console.log("playing " + titleVideo.playing);
-		
-		console.log("touchLocked " + titleVideo.touchLocked);
 	},
 
     nextLine: function () {
