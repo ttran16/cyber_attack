@@ -5,6 +5,11 @@ PhaserGame.Intro = function (game) {
 PhaserGame.Intro.prototype = {
     
     create: function () {
+        
+        this.events.onInputDown.addOnce(this.begin,this);
+    },
+    begin: function(){
+		
         //this.startBG;
         this.index = 0;
         this.textTimer;
@@ -59,9 +64,8 @@ PhaserGame.Intro.prototype = {
         
         
         this.game.time.events.add(23000, this.startGame, this);
-        
-    },
-    
+		
+	}
     updateLine: function () {
         if (line.length < this.content[this.index].length) {
             line = this.content[this.index].substr(0, line.length + 1);
