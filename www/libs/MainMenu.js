@@ -12,7 +12,8 @@ PhaserGame.MainMenu.prototype = {
     
     create: function () {
         
-        mainMenuVideo = this.game.add.video('BG-MainMenuVideo');
+        //mainMenuVideo = this.game.add.video('BG-MainMenuVideo');
+		mainMenuVideo = this.game['mainMenuVideo'];
         mainMenuVideo.addToWorld(0, 0, 0, 0, this.game.width/this.game.game_config.main_menu_bg_video.width, this.game.height/this.game.game_config.main_menu_bg_video.height);
         
         mainMenuVideo.play();
