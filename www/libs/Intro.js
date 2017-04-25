@@ -5,11 +5,11 @@ PhaserGame.Intro = function (game) {
 PhaserGame.Intro.prototype = {
     
     create: function () {
-        
-        this.events.onInputDown.addOnce(this.begin,this);
+        mainMenuScreen = this.add.sprite(this.world.centerX, this.world.centerY, 'BG-MainMenu');;
+        mainMenuScreen.events.onInputDown.addOnce(this.begin,this);
     },
     begin: function(){
-		
+		mainMenuScreen.alpha=0;
         //this.startBG;
         this.index = 0;
         this.textTimer;
@@ -65,7 +65,7 @@ PhaserGame.Intro.prototype = {
         
         this.game.time.events.add(23000, this.startGame, this);
 		
-	}
+	},
     updateLine: function () {
         if (line.length < this.content[this.index].length) {
             line = this.content[this.index].substr(0, line.length + 1);
