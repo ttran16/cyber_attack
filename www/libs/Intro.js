@@ -7,12 +7,7 @@ PhaserGame.Intro.prototype = {
     create: function () {
 
 		console.log("created");
-        music = this.add.audio('MUSIC-Intro');
-		
-        titleVideo = this.game.add.video('BG-TitleVideo');
-        titleVideo.addToWorld(0, 0, 0, 0, this.game.width/this.game.game_config.intro_video.width, this.game.height/this.game.game_config.intro_video.height);
-		
-		mainMenuScreen = this.add.sprite(this.world.centerX, this.world.centerY, 'BG-MainMenu');
+		mainMenuScreen = this.add.sprite(0, 0, 'BG-MainMenu');
 		mainMenuScreen.width=this.game.width;
 		mainMenuScreen.height=this.game.height;        
         mainMenuScreen.inputEnabled = true;
@@ -46,6 +41,11 @@ PhaserGame.Intro.prototype = {
         //startBG.inputEnabled = true;
         //startBG.events.onInputDown.addOnce(this.startGame,this);
         
+        music = this.add.audio('MUSIC-Intro');
+		
+        titleVideo = this.game.add.video('BG-TitleVideo');
+        titleVideo.addToWorld(0, 0, 0, 0, this.game.width/this.game.game_config.intro_video.width, this.game.height/this.game.game_config.intro_video.height);
+		
         music.play();
                 
         titleVideo.play();        
