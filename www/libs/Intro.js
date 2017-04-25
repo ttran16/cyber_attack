@@ -9,6 +9,11 @@ PhaserGame.Intro.prototype = {
 		mainMenuScreen.width=this.game.width;
 		mainMenuScreen.height=this.game.height;
         mainMenuScreen.events.onInputDown.addOnce(this.begin,this);
+		
+        music = this.add.audio('MUSIC-Intro');
+		
+        titleVideo = this.game.add.video('BG-TitleVideo');
+        titleVideo.addToWorld(0, 0, 0, 0, this.game.width/this.game.game_config.intro_video.width, this.game.height/this.game.game_config.intro_video.height);
     },
     begin: function(){
 		mainMenuScreen.alpha=0;
@@ -36,11 +41,8 @@ PhaserGame.Intro.prototype = {
         //startBG.inputEnabled = true;
         //startBG.events.onInputDown.addOnce(this.startGame,this);
         
-        music = this.add.audio('MUSIC-Intro');
         music.play();
                 
-        titleVideo = this.game.add.video('BG-TitleVideo');
-        titleVideo.addToWorld(0, 0, 0, 0, this.game.width/this.game.game_config.intro_video.width, this.game.height/this.game.game_config.intro_video.height);
         titleVideo.play();        
         titleScreen = this.add.sprite(0, 0, 'BG-MainMenu');
 		
