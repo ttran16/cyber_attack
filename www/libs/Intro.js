@@ -77,6 +77,11 @@ PhaserGame.Intro.prototype = {
 	update: function() {
 		titleVideo.play();
 		
+		
+		console.log("intro update");
+		console.log("playing " + titleVideo.playing);
+		
+		console.log("touchLocked " + titleVideo.touchLocked);
 	},
 
     nextLine: function () {
