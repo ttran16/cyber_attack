@@ -16,7 +16,7 @@ PhaserGame.MainMenu.prototype = {
 		mainMenuVideo = this.game['mainMenuVideo'];
         mainMenuVideo.addToWorld(0, 0, 0, 0, this.game.width/this.game.game_config.main_menu_bg_video.width, this.game.height/this.game.game_config.main_menu_bg_video.height);
         
-        mainMenuVideo.play();
+        mainMenuVideo.play(true,1);
         text = this.add.text(this.world.centerX, this.world.centerY-100, 'Select an option:', { font: "20pt Michroma", fill: "#ffffff", stroke: "#cccccc", strokeThickness: 0 });
         text.anchor.set(0.5);
         
@@ -71,13 +71,6 @@ PhaserGame.MainMenu.prototype = {
         this.game.state.start('Practice');
     },
 	update: function() {
-		mainMenuVideo.play();
-		music.volume = 0.2;
-		console.log("main menu update");
-		
-		console.log("playing " + mainMenuVideo.playing);
-		
-		console.log("touchLocked " + mainMenuVideo.touchLocked);
 	},
 	pauseUpdate: function () {
 		music.volume = 0.0;
