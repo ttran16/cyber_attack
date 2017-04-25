@@ -5,30 +5,6 @@ PhaserGame.Intro = function (game) {
 PhaserGame.Intro.prototype = {
     
     create: function () {
-
-	
-        //music = this.add.audio('MUSIC-Intro');
-		
-        titleVideo = this.game.add.video('BG-TitleVideo');
-        titleVideo.addToWorld(0, 0, 0, 0, this.game.width/this.game.game_config.intro_video.width, this.game.height/this.game.game_config.intro_video.height);
-		titleVideo.unlock();
-		titleVideo.play();
-        //this.game['mainMenuVideo'] = this.game.add.video('BG-MainMenuVideo');
-	
-	
-		//console.log("created");
-		//mainMenuScreen = this.add.sprite(0, 0, 'BG-MainMenu');
-		//mainMenuScreen.width=this.game.width;
-		//mainMenuScreen.height=this.game.height;        
-        //mainMenuScreen.inputEnabled = true;
-        //mainMenuScreen.input.useHandCursor = true;
-        //mainMenuScreen.events.onInputDown.addOnce(this.begin,this);
-		
-		
-    },
-    begin: function(){
-		console.log("clicked");
-		mainMenuScreen.alpha=0;
         //this.startBG;
         this.index = 0;
         this.textTimer;
@@ -53,12 +29,15 @@ PhaserGame.Intro.prototype = {
         //startBG.inputEnabled = true;
         //startBG.events.onInputDown.addOnce(this.startGame,this);
         
-        music.play(true,1);
+        music = this.add.audio('MUSIC-Intro');
+        music.play();
                 
-        titleVideo.play();        
+        titleVideo = this.game.add.video('BG-TitleVideo');
+        titleVideo.addToWorld(0, 0, 0, 0, this.game.width/this.game.game_config.intro_video.width, this.game.height/this.game.game_config.intro_video.height);
+        
         titleScreen = this.add.sprite(0, 0, 'BG-MainMenu');
-		
-
+		titleVideo.unlock();
+        titleVideo.play();
 		titleScreen.width=this.game.width;
 		titleScreen.height=this.game.height;
 		
@@ -80,8 +59,9 @@ PhaserGame.Intro.prototype = {
         
         
         this.game.time.events.add(23000, this.startGame, this);
-		
-	},
+        
+    },
+    
     updateLine: function () {
         if (line.length < this.content[this.index].length) {
             line = this.content[this.index].substr(0, line.length + 1);
@@ -95,7 +75,13 @@ PhaserGame.Intro.prototype = {
 
     },
 	update: function() {
-		console.log('touchlock: ' + titleVideo.touchLocked);
+		titleVideo.play();
+		
+		
+		console.log("intro update");
+		console.log("playing " + titleVideo.playing);
+		
+		console.log("touchLocked " + titleVideo.touchLocked);
 	},
 
     nextLine: function () {
