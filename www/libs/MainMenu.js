@@ -70,13 +70,6 @@ PhaserGame.MainMenu.prototype = {
         this.game.state.start('Practice');
     },
 	update: function() {
-		mainMenuVideo.play();
-		music.volume = 0.2;
-		console.log("main menu update");
-		
-		console.log("playing " + mainMenuVideo.playing);
-		
-		console.log("touchLocked " + mainMenuVideo.touchLocked);
 	},
 	pauseUpdate: function () {
 		music.volume = 0.0;
