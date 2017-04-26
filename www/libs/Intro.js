@@ -30,7 +30,7 @@ PhaserGame.Intro.prototype = {
         //startBG.events.onInputDown.addOnce(this.startGame,this);
         
         music = this.add.audio('MUSIC-Intro');
-        music.play();
+        //music.play();
                 
         titleVideo = this.game.add.video('BG-TitleVideo');
         titleVideo.addToWorld(0, 0, 0, 0, this.game.width/this.game.game_config.intro_video.width, this.game.height/this.game.game_config.intro_video.height);
@@ -75,6 +75,7 @@ PhaserGame.Intro.prototype = {
 
     },
 	update: function() {
+		music.play();
 	},
 
     nextLine: function () {
@@ -91,6 +92,7 @@ PhaserGame.Intro.prototype = {
     },
     
 	pauseUpdate: function () {
+		console.log('pauseUpdate');
 		music.volume = 0.0;
     },
     
