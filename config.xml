@@ -13,15 +13,15 @@
 	<preference name="AllowInlineMediaPlayback" value="true"/>  
 	
 	<preference name="SplashScreenDelay" value="10000" />
-	
+
+	<icon src="icon.png" />	
+	<splash src="splash.png" />
 	<platform name="android">
-		<icon src="icon.png" />	
 		<icon src="res/icon/android/icon-36-ldpi.png" qualifier="ldpi" />
 		<icon src="res/icon/android/icon-48-mdpi.png" qualifier="mdpi" />
 		<icon src="res/icon/android/icon-72-hdpi.png" qualifier="hdpi" />
 		<icon src="res/icon/android/icon-96-xhdpi.png" qualifier="xhdpi" />
 		
-		<splash src="splash.png" />
 		<splash src="res/splash/android/splash-ldpi.png" qualifier="ldpi" />
 		<splash src="res/splash/android/splash-mdpi.png" qualifier="mdpi" />
 		<splash src="res/splash/android/splash-hdpi.png" qualifier="hdpi" />
