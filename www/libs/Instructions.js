@@ -14,7 +14,7 @@ PhaserGame.Instructions.prototype = {
 		
 		instructionsScreen.width=this.game.width;
 		instructionsScreen.height=this.game.height;
-		music.volume = 0.2;
+		music.volume = 0.1;
         voice = this.add.audio('VOICE-Instructions',1);
         voice.play();
 
@@ -44,7 +44,6 @@ Good Luck! \n\
     
     startMainMenu: function () {
         this.game.state.start('MainMenu');
-		music.volume = 1;
         voice.stop();
     }
     
