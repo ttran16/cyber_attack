@@ -296,7 +296,7 @@ PhaserGame.LevelPlay.prototype = {
         // TAKE THE HIGHEST POWER ATTACK HUB OFFLINE
         //var x = this.locateLeastDamagedHub();
 		this.game.AttackHubs[this.Hubs.locateLeastDamagedHub()].damage = 0;
-        this.Hubs.setDamage(this.locateLeastDamagedHub(),0);
+        this.Hubs.setDamage(this.Hubs.locateLeastDamagedHub(),0);
         
         // EXPLOSION ON ATTACKING HUB
 		
@@ -325,7 +325,7 @@ PhaserGame.LevelPlay.prototype = {
         };
         
         // SEND DAMAGE (SEE PLAYERDAMAGE)
-        this.playerDamage('Down', restoreAmount);
+        this.Hubs.playerDamage('Down', restoreAmount);
         
         // PLAY "POWERED Up" SOUND
         //this.sound.play('SOUND-PowerUp', 0.5, false);
