@@ -4,18 +4,8 @@ PhaserGame.LevelIntro = function (game) {};
 PhaserGame.LevelIntro.prototype = {
     
     preload: function () {
-		this.load.image('BG-LevelIntro','assets/Level' + this.game.SETUP_GameLevel + '-Intro.jpg');
-		/*
-        if (this.game.SETUP_GameLevel == 1) {
-            this.load.image('BG-LevelIntro','assets/BG-LevelIntro1.jpg');
-        } else if (this.game.SETUP_GameLevel == 2) {
-            this.load.image('BG-LevelIntro','assets/BG-LevelIntro2.jpg');
-        } else if (this.game.SETUP_GameLevel == 3) {
-            this.load.image('BG-LevelIntro','assets/BG-LevelIntro3.jpg');
-        } else {
-            this.load.image('BG-LevelIntro','assets/BG-LevelIntro4.jpg');
-        }
-		*/
+		this.load.image('BG-LevelIntro','assets/GFX/Level' + this.game.SETUP_GameLevel + '-Intro.jpg');
+		
     },
     
     create: function () {
@@ -29,7 +19,8 @@ PhaserGame.LevelIntro.prototype = {
 		
         levelIntroScreen.inputEnabled = true;
         levelIntroScreen.events.onInputDown.addOnce(this.levelPlay,this);
-        
+        this.game.Director.say('level' + this.game.SETUP_GameLevel + 'scenario',1,this.voiceStopped);
+		
         
         // Target Name
 		/*
@@ -49,8 +40,14 @@ PhaserGame.LevelIntro.prototype = {
         text.anchor.set(0, 0);
         */
     },
+    voiceStopped: function(){
+		music.volume=1;
+	},
     
     levelPlay: function () {
+		music.destroy();
+		this.game.Director.stopTalking();
+		this.game.Director.say('start',1);
         this.game.state.start('LevelPlay');
     }
     

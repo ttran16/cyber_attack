@@ -51,6 +51,8 @@ PhaserGame.Intro.prototype = {
 		blackScreen.height=this.game.height;
 		
 		
+        audiowide_preload = this.game.add.text(32, 600, 'bbb', { font: "25pt Audiowide", fill: "#000000", stroke: "#000000", strokeThickness: 1 });
+		
         this.text = this.game.add.text(32, 600, 'aaaaaaa', { font: "25pt Michroma", fill: "#ffffff", stroke: "#000000", strokeThickness: 1 });
         this.text.setShadow(3, 3, 'rgba(0,0,0,1)', 7);
         this.nextLine();

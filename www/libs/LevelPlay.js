@@ -1,6 +1,6 @@
 PhaserGame.LevelPlay = function (game) {
-	this.Questions = new PhaserGame.LevelPlay.Questions(this);
-	this.Hubs = new PhaserGame.LevelPlay.Hubs(this);
+	this.Questions = new Questions(this);
+	this.Hubs = new Hubs(this);
 }
 PhaserGame.LevelPlay.prototype = {
         
@@ -256,14 +256,29 @@ PhaserGame.LevelPlay.prototype = {
         };
         
         if (bonus == '5050') {
+			this.game.Director.stopTalking();
+			this.game.Director.enqueue('bonusnicejob');			
+			this.game.Director.enqueue('bonus5050');
+			this.game.Director.startTalking();
+			
             this.game.SPRITE_BonusPopup.loadTexture("BONUS-5050");
             this.game.POWERUP_5050++;
         };
         if (bonus == 'Attack') {
+			this.game.Director.stopTalking();
+			this.game.Director.enqueue('bonusnicejob');			
+			this.game.Director.enqueue('bonusattack');
+			this.game.Director.startTalking();
+			
             this.game.SPRITE_BonusPopup.loadTexture("BONUS-Attack");
             this.game.POWERUP_Attack++;
         };
         if (bonus == 'Restore') {
+			this.game.Director.stopTalking();
+			this.game.Director.enqueue('bonusnicejob');			
+			this.game.Director.enqueue('bonuspowerup');
+			this.game.Director.startTalking();
+			
             this.game.SPRITE_BonusPopup.loadTexture("BONUS-Restore");
             this.game.POWERUP_Restore++;
         };
@@ -285,6 +300,8 @@ PhaserGame.LevelPlay.prototype = {
         this.game.SPRITE_BonusOverlay.inputEnabled = false;
         this.game.SPRITE_BonusPopup.inputEnabled = false;
         
+		this.game.Director.stopTalking();
+		
         // RETURN TO PLAY
         this.game.add.tween(this.game.GROUP_Bonus).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, false);
         this.game.PAUSED = false;
@@ -295,12 +312,12 @@ PhaserGame.LevelPlay.prototype = {
     powerUp_Attack: function () {
         // TAKE THE HIGHEST POWER ATTACK HUB OFFLINE
         //var x = this.locateLeastDamagedHub();
-		this.game.AttackHubs[this.Hubs.locateLeastDamagedHub()].damage = 0;
-        this.Hubs.setDamage(this.Hubs.locateLeastDamagedHub(),0);
+		this.game.AttackHubs[this.Hubs.locateMostDamagedHub()].damage = 0;
+        this.Hubs.setDamage(this.Hubs.locateMostDamagedHub(),0);
         
         // EXPLOSION ON ATTACKING HUB
 		
-		var atkhub = this.game.AttackHubs[this.Hubs.locateLeastDamagedHub()];
+		var atkhub = this.game.AttackHubs[this.Hubs.locateMostDamagedHub()];
         
         this.game.GROUP_Explosion.alpha = 1;
         this.game.SPRITE_Explosion.reset(atkhub.x, atkhub.y);

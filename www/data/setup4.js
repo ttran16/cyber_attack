@@ -12,22 +12,22 @@
 	<hubLocation>
 		<x>275</x>
 		<y>550</y>
-        <dmg>3</dmg>
+        <dmg>1</dmg>
 	</hubLocation>
 	<hubLocation>
 		<x>840</x>
 		<y>400</y>
-		<dmg>3</dmg>
+		<dmg>1</dmg>
 	</hubLocation>
 	<hubLocation>
 		<x>700</x>
 		<y>125</y>
-        <dmg>3</dmg>
+        <dmg>1</dmg>
 	</hubLocation>
 	<hubLocation>
 		<x>275</x>
 		<y>200</y>
-        <dmg>3</dmg>
+        <dmg>1</dmg>
 	</hubLocation>
 </attackHubs>
 </xmlData>

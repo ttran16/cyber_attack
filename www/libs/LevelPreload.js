@@ -29,105 +29,107 @@ PhaserGame.LevelPreload.prototype = {
         
         
         //Load Level Background
-        this.load.image('BG-Level','assets/BG-Level.jpg');
+        this.load.image('BG-Level','assets/GFX/BG-Level.jpg');
                 
         //Load Level Map
-        this.load.image('LEVEL-Map','assets/LEVEL-Map' + this.game.SETUP_GameLevel + '.jpg');
+        this.load.image('LEVEL-Map','assets/GFX/LEVEL-Map' + this.game.SETUP_GameLevel + '.jpg');
         
         //Load Player Hubs
-        this.load.image('SPRITE-DefenseHub-Bank','assets/SPRITE-DefenseHub-Bank.png');
-        this.load.image('SPRITE-DefenseHub-PowerPlant','assets/SPRITE-DefenseHub-PowerPlant.png');
-        this.load.image('SPRITE-DefenseHub-OilPlatform','assets/SPRITE-DefenseHub-OilPlatform.png');
-        this.load.image('SPRITE-DefenseHub-Casino','assets/SPRITE-DefenseHub-Casino.png');
+        this.load.image('SPRITE-DefenseHub-Bank','assets/GFX/SPRITE-DefenseHub-Bank.png');
+        this.load.image('SPRITE-DefenseHub-PowerPlant','assets/GFX/SPRITE-DefenseHub-PowerPlant.png');
+        this.load.image('SPRITE-DefenseHub-OilPlatform','assets/GFX/SPRITE-DefenseHub-OilPlatform.png');
+        this.load.image('SPRITE-DefenseHub-Casino','assets/GFX/SPRITE-DefenseHub-Casino.png');
         
         //Load Collision Point
-        this.load.image('SPRITE-CollisionPoint','assets/SPRITE-CollisionPoint.png');
+        this.load.image('SPRITE-CollisionPoint','assets/GFX/SPRITE-CollisionPoint.png');
         
         //Load Damage Meter Images
 		//TODO:  optimize this
-        this.load.image('ICON-DamageMeter-0','assets/ICON-Dmg0.png');
-        this.load.image('ICON-DamageMeter-1','assets/ICON-Dmg1.png');
-        this.load.image('ICON-DamageMeter-2','assets/ICON-Dmg2.png');
-        this.load.image('ICON-DamageMeter-3','assets/ICON-Dmg3.png');
-        this.load.image('ICON-DamageMeter-4','assets/ICON-Dmg4.png');
-        this.load.image('ICON-DamageMeter-5','assets/ICON-Dmg5.png');
-        this.load.image('ICON-DamageMeter-6','assets/ICON-Dmg6.png');
-        this.load.image('ICON-DamageMeter-7','assets/ICON-Dmg7.png');
-        this.load.image('ICON-DamageMeter-8','assets/ICON-Dmg8.png');
-        this.load.image('ICON-DamageMeter-9','assets/ICON-Dmg9.png');
-        this.load.image('ICON-DamageMeter-10','assets/ICON-Dmg10.png');
-        this.load.image('ICON-DamageMeter-11','assets/ICON-Dmg11.png');
-        this.load.image('ICON-DamageMeter-12','assets/ICON-Dmg12.png');
-        this.load.image('ICON-DamageMeter-13','assets/ICON-Dmg13.png');
-        this.load.image('ICON-DamageMeter-14','assets/ICON-Dmg14.png');
-        this.load.image('ICON-DamageMeter-15','assets/ICON-Dmg15.png');
-        this.load.image('ICON-DamageMeter-16','assets/ICON-Dmg16.png');
-        this.load.image('ICON-DamageMeter-17','assets/ICON-Dmg17.png');
-        this.load.image('ICON-DamageMeter-18','assets/ICON-Dmg18.png');
-        this.load.image('ICON-DamageMeter-19','assets/ICON-Dmg19.png');
+        this.load.image('ICON-DamageMeter-0','assets/GFX/ICON-Dmg0.png');
+        this.load.image('ICON-DamageMeter-1','assets/GFX/ICON-Dmg1.png');
+        this.load.image('ICON-DamageMeter-2','assets/GFX/ICON-Dmg2.png');
+        this.load.image('ICON-DamageMeter-3','assets/GFX/ICON-Dmg3.png');
+        this.load.image('ICON-DamageMeter-4','assets/GFX/ICON-Dmg4.png');
+        this.load.image('ICON-DamageMeter-5','assets/GFX/ICON-Dmg5.png');
+        this.load.image('ICON-DamageMeter-6','assets/GFX/ICON-Dmg6.png');
+        this.load.image('ICON-DamageMeter-7','assets/GFX/ICON-Dmg7.png');
+        this.load.image('ICON-DamageMeter-8','assets/GFX/ICON-Dmg8.png');
+        this.load.image('ICON-DamageMeter-9','assets/GFX/ICON-Dmg9.png');
+        this.load.image('ICON-DamageMeter-10','assets/GFX/ICON-Dmg10.png');
+        this.load.image('ICON-DamageMeter-11','assets/GFX/ICON-Dmg11.png');
+        this.load.image('ICON-DamageMeter-12','assets/GFX/ICON-Dmg12.png');
+        this.load.image('ICON-DamageMeter-13','assets/GFX/ICON-Dmg13.png');
+        this.load.image('ICON-DamageMeter-14','assets/GFX/ICON-Dmg14.png');
+        this.load.image('ICON-DamageMeter-15','assets/GFX/ICON-Dmg15.png');
+        this.load.image('ICON-DamageMeter-16','assets/GFX/ICON-Dmg16.png');
+        this.load.image('ICON-DamageMeter-17','assets/GFX/ICON-Dmg17.png');
+        this.load.image('ICON-DamageMeter-18','assets/GFX/ICON-Dmg18.png');
+        this.load.image('ICON-DamageMeter-19','assets/GFX/ICON-Dmg19.png');
                 
         //Load Attack Hubs
 		//TODO:  optimize this
-        this.load.image('SPRITE-AttackHub0','assets/SPRITE-AttackHub0.png');
-        this.load.image('SPRITE-AttackHub1','assets/SPRITE-AttackHub1.png');
-        this.load.image('SPRITE-AttackHub2','assets/SPRITE-AttackHub2.png');
-        this.load.image('SPRITE-AttackHub3','assets/SPRITE-AttackHub3.png');
+        this.load.image('SPRITE-AttackHub0','assets/GFX/SPRITE-AttackHub0.png');
+        this.load.image('SPRITE-AttackHub1','assets/GFX/SPRITE-AttackHub1.png');
+        this.load.image('SPRITE-AttackHub2','assets/GFX/SPRITE-AttackHub2.png');
+        this.load.image('SPRITE-AttackHub3','assets/GFX/SPRITE-AttackHub3.png');
         
-        this.load.image('SPRITE-AttackHub-Highlight','assets/SPRITE-AttackHub-Highlight.png');
+        this.load.image('SPRITE-AttackHub-Highlight','assets/GFX/SPRITE-AttackHub-Highlight.png');
                 
         //Load Missile Sprites
-        this.load.image('SPRITE-Missile','assets/SPRITE-Missile.png');
-        this.load.image('SPRITE-MissileTrail','assets/SPRITE-MissileTrail.png');
-        this.load.image('SPRITE-Shockwave','assets/SPRITE-Shockwave.png');
+        this.load.image('SPRITE-Missile','assets/GFX/SPRITE-Missile.png');
+        this.load.image('SPRITE-MissileTrail','assets/GFX/SPRITE-MissileTrail.png');
+        this.load.image('SPRITE-Shockwave','assets/GFX/SPRITE-Shockwave.png');
         
         //Load Icons
-        this.load.image('ICON-5050-On','assets/ICON-50-50-On.png');
-        this.load.image('ICON-5050-Off','assets/ICON-50-50-Off.png');
-        this.load.image('ICON-Attack-On','assets/ICON-Attack-On.png');
-        this.load.image('ICON-Attack-Off','assets/ICON-Attack-Off.png');
-        this.load.image('ICON-Restore-On','assets/ICON-PowerUp-On.png');
-        this.load.image('ICON-Restore-Off','assets/ICON-PowerUp-Off.png');
-        this.load.image('ICON-Help','assets/ICON-Help.png');
-        this.load.image('ICON-Debug','assets/ICON-Debug-On.png');
+        this.load.image('ICON-5050-On','assets/GFX/ICON-50-50-On.png');
+        this.load.image('ICON-5050-Off','assets/GFX/ICON-50-50-Off.png');
+        this.load.image('ICON-Attack-On','assets/GFX/ICON-Attack-On.png');
+        this.load.image('ICON-Attack-Off','assets/GFX/ICON-Attack-Off.png');
+        this.load.image('ICON-Restore-On','assets/GFX/ICON-PowerUp-On.png');
+        this.load.image('ICON-Restore-Off','assets/GFX/ICON-PowerUp-Off.png');
+        this.load.image('ICON-Help','assets/GFX/ICON-Help.png');
+        this.load.image('ICON-Debug','assets/GFX/ICON-Debug-On.png');
         
         //Load Bonus Related Images
-        this.load.image('BONUS-5050','assets/BONUS-5050.jpg');
-        this.load.image('BONUS-Attack','assets/BONUS-Attack.jpg');
-        this.load.image('BONUS-Restore','assets/BONUS-Restore.jpg');
+        this.load.image('BONUS-5050','assets/GFX/BONUS-5050.jpg');
+        this.load.image('BONUS-Attack','assets/GFX/BONUS-Attack.jpg');
+        this.load.image('BONUS-Restore','assets/GFX/BONUS-Restore.jpg');
         
         //LOAD EXPLOSION SPRITE
-        this.load.spritesheet('SPRITE-Explosion', 'assets/SPRITE-Explosion.png', 128, 128, 10);
+        this.load.spritesheet('SPRITE-Explosion', 'assets/GFX/SPRITE-Explosion.png', 128, 128, 10);
         
         //LOAD REPAIR SPRITE
-        this.load.spritesheet('SPRITE-HubRepair', 'assets/SPRITE-HubRepair.png', 111, 111, 10);
+        this.load.spritesheet('SPRITE-HubRepair', 'assets/GFX/SPRITE-HubRepair.png', 111, 111, 10);
         
         //Load Level XML
         this.load.text('TEXT-LevelSetup', 'data/setup' + this.game.SETUP_GameLevel + '.js');
         this.load.text('TEXT-LevelDialog', 'data/dialog' + this.game.SETUP_GameLevel + '.js');
                 
         //Load Question Related Images
-        this.load.image('BG-QOverlay','assets/BG-QOverlay.png');
-        this.load.image('SPRITE-AnswerButtonLarge','assets/SPRITE-AnswerButtonLarge.png');
+        this.load.image('BG-QOverlay','assets/GFX/BG-QOverlay.png');
+        this.load.image('SPRITE-AnswerButtonLarge','assets/GFX/SPRITE-AnswerButtonLarge.png');
         
         //Load Null Image - For Questions/Answer Placement
-        this.load.image('nullImage','assets/null.jpg');
+        this.load.image('nullImage','assets/GFX/null.jpg');
         
         //Load Questions XML and Images
         this.questionsLoad();
         
         //Load Audio
-        this.load.audio('SOUND-Missile','assets/SOUND-Missile.mp3');
-        this.load.audio('SOUND-MissileHit','assets/SOUND-MissileHit.mp3');
-        this.load.audio('SOUND-Correct','assets/SOUND-Correct.mp3');
-        this.load.audio('SOUND-Incorrect','assets/SOUND-Incorrect.mp3');
-        this.load.audio('SOUND-AttackHubPowerUp','assets/SOUND-AttackHubPowerUp.mp3');
-        this.load.audio('SOUND-AttackHubPowerDown','assets/SOUND-AttackHubPowerDown.mp3');
-        this.load.audio('SOUND-AttackHubHit','assets/SOUND-AttackHubHit.mp3');
-        this.load.audio('SOUND-PowerUp','assets/SOUND-PowerUp.mp3');
-        this.load.audio('SOUND-EarnedPowerUp','assets/SOUND-EarnedPowerUp.mp3');
-        this.load.audio('SOUND-5050','assets/SOUND-5050.mp3');
-        this.load.audio('MUSIC-Level1','assets/MUSIC-Level1.mp3');
-        this.load.audio('MUSIC-LevelIntro','assets/MUSIC-LevelIntro.mp3');
+        this.load.audio('SOUND-Missile','assets/SFX/SOUND-Missile.mp3');
+        this.load.audio('SOUND-MissileHit','assets/SFX/SOUND-MissileHit.mp3');
+        this.load.audio('SOUND-Correct','assets/SFX/SOUND-Correct.mp3');
+        this.load.audio('SOUND-Incorrect','assets/SFX/SOUND-Incorrect.mp3');
+        this.load.audio('SOUND-AttackHubPowerUp','assets/SFX/SOUND-AttackHubPowerUp.mp3');
+        this.load.audio('SOUND-AttackHubPowerDown','assets/SFX/SOUND-AttackHubPowerDown.mp3');
+        this.load.audio('SOUND-AttackHubHit','assets/SFX/SOUND-AttackHubHit.mp3');
+        this.load.audio('SOUND-PowerUp','assets/SFX/SOUND-PowerUp.mp3');
+        this.load.audio('SOUND-EarnedPowerUp','assets/SFX/SOUND-EarnedPowerUp.mp3');
+        this.load.audio('SOUND-5050','assets/SFX/SOUND-5050.mp3');
+        this.load.audio('MUSIC-Level1','assets/MUSIC/MUSIC-Level1.mp3');
+        this.load.audio('MUSIC-LevelIntro','assets/MUSIC/MUSIC-LevelIntro.mp3');
+        this.load.audio('VOICE-SCENARIO','assets/VOICE/LEVEL' + this.game.SETUP_GameLevel + 'SCENARIO.mp3');
+		
     },
     
     
@@ -138,11 +140,17 @@ PhaserGame.LevelPreload.prototype = {
         
         // Play Music
         music.destroy();
-        music = this.add.audio('MUSIC-LevelIntro',0.8,true);
-        music.volume = .8;
+        music = this.add.audio('MUSIC-LevelIntro',0.3,true);
+        music.volume = 0.3;
         music.play();
-        
-        
+		
+		/*
+		voice=this.add.audio('VOICE-SCENARIO',1,false);
+		voice.volume=1;
+        voice.play(false);
+		voice.onStop.add(this.voiceStopped, this);
+        */
+		
         // PARSE Setup XML
         var xml = this.cache.getText('TEXT-LevelSetup');
         var parser = new DOMParser();
@@ -202,7 +210,6 @@ PhaserGame.LevelPreload.prototype = {
         this.game.DATA_LevelDescription = (x[0].getElementsByTagName("description")[0].childNodes[0].nodeValue);
             
     },
-    
     questionsLoad: function () {
         
         // Preload Question images

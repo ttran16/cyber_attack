@@ -34,9 +34,9 @@ PhaserGame.Boot.prototype = {
     preload: function () {
 
         //  Here we load the assets required for our preloader (in this case a background and a loading bar)
-        this.load.image('preloaderBackground', 'assets/BG-Default.jpg');
-        this.load.image('preloaderForeground', 'assets/BG-Loading.png');
-        this.load.image('preloaderProgress', 'assets/BG-Loading-Progress.png');
+        this.load.image('preloaderBackground', 'assets/GFX/BG-Default.jpg');
+        this.load.image('preloaderForeground', 'assets/GFX/BG-Loading.png');
+        this.load.image('preloaderProgress', 'assets/GFX/BG-Loading-Progress.png');
 		
     },
 

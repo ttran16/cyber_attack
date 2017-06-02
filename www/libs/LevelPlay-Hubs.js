@@ -1,4 +1,4 @@
-PhaserGame.LevelPlay.Hubs = function (LP) {
+Hubs = function (LP) {
 	
 	this.LevelPlay = LP;
 	
@@ -6,7 +6,7 @@ PhaserGame.LevelPlay.Hubs = function (LP) {
 	
 };
 
-PhaserGame.LevelPlay.Hubs.prototype = {
+Hubs.prototype = {
     
     Init: function(){
 		this.buildGroup_Hub();

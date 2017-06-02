@@ -1,7 +1,12 @@
 
 PhaserGame.Preloader = function (game) {
     this.loadingImage = null;
+	
+	game.Director = new Director(game);
     this.ready = false;
+	
+	
+	
 };
 
 
@@ -11,19 +16,20 @@ PhaserGame.Preloader.prototype = {
         
 		//	Here we load the rest of the assets our game needs.
 		//	As this is just a Project Template I've not provided these assets, swap them for your own.
-		this.load.video('BG-TitleVideo','assets/BG-TitleVideo.webm');
-        this.load.image('BG-Black','assets/BG-Black.jpg');
+		this.game.Director.Init();
+		this.load.video('BG-TitleVideo','assets/VIDEO/Intro.mp4');
+        this.load.image('BG-Black','assets/GFX/BG-Black.jpg');
         
-        this.load.video('BG-MainMenuVideo','assets/BG-MainMenuVideo.webm');
-        this.load.image('BG-MainMenu','assets/BG-MainMenu.jpg');
-        this.load.image('BTN-Wide','assets/BTN-Wide.png');
+		this.load.video('BG-MainMenuVideo','assets/VIDEO/Main.mp4');
+        this.load.image('BG-MainMenu','assets/GFX/BG-MainMenu.jpg');
+        this.load.image('BTN-Wide','assets/GFX/BTN-Wide.png');
         
-        this.load.audio('MUSIC-Intro','assets/MUSIC-Intro.mp3');
+        this.load.audio('MUSIC-Intro','assets/MUSIC/MUSIC-Intro.mp3');
         
-        this.load.audio('VOICE-Instructions','assets/VOICE-Instructions.mp3');
+        this.load.audio('VOICE-Instructions','assets/VOICE/Instructions.mp3');
         
-        this.load.audio('SOUND-Click','assets/SOUND-click.mp3');
-        this.load.audio('SOUND-Select','assets/SOUND-select.mp3');
+        this.load.audio('SOUND-Click','assets/SFX/SOUND-click.mp3');
+        this.load.audio('SOUND-Select','assets/SFX/SOUND-select.mp3');
         
         this.load.text('TEXT-LevelQuestions1', 'data/questions1.js');
         this.load.text('TEXT-LevelQuestions2', 'data/questions2.js');

@@ -1,9 +1,9 @@
-PhaserGame.LevelPlay.Questions = function (LP) {
+Questions = function (LP) {
 	this.LevelPlay = LP;
 	console.log("data initialized");
 };
 
-PhaserGame.LevelPlay.Questions.prototype = {
+Questions.prototype = {
     
 	
 	
@@ -188,7 +188,8 @@ PhaserGame.LevelPlay.Questions.prototype = {
             
             // PLAY CORRECT ANSWER SOUND EFFECT
             //this.LevelPlay.sound.play('SOUND-Correct', 0.5, false);
-            soundCorrect.play();
+			this.LevelPlay.game.Director.say('correct',1);
+            //soundCorrect.play();
             
             // EXPLOSION ON ATTACKING HUB
 			console.log(this.LevelPlay.game);
@@ -254,9 +255,10 @@ PhaserGame.LevelPlay.Questions.prototype = {
             
             // PLAY INCORRECT ANSWER SOUND EFFECT
             //this.LevelPlay.sound.play('SOUND-Incorrect', 0.5, false);
+			this.LevelPlay.game.Director.say('incorrect',1);
             var hubRepaired = -1;
             var hubRestored = -1;   
-            soundIncorrect.play();
+            //soundIncorrect.play();
 			var RepairHub;
 			var repair_index = this.LevelPlay.Hubs.locateLeastDamagedHub();
 			if(this.LevelPlay.game.AttackHubs[repair_index].damage < this.LevelPlay.game.AttackHubs[repair_index].max_damage)

@@ -4,7 +4,7 @@ PhaserGame.Instructions = function (game) {};
 PhaserGame.Instructions.prototype = {
     
     preload: function () {
-        this.load.image('BG-Instructions','assets/BG-Instructions-Text.jpg');
+        this.load.image('BG-Instructions','assets/GFX/BG-Instructions-Text.jpg');
     },
     
     
@@ -15,9 +15,9 @@ PhaserGame.Instructions.prototype = {
 		instructionsScreen.width=this.game.width;
 		instructionsScreen.height=this.game.height;
 		music.volume = 0.1;
-        voice = this.add.audio('VOICE-Instructions',1);
-        voice.play();
-
+		
+		
+		this.game.Director.say('instructions',1);
         instructionsScreen.inputEnabled = true;
 		
         instructionsScreen.events.onInputDown.addOnce(this.startMainMenu,this);
@@ -43,8 +43,8 @@ Good Luck! \n\
     },
     
     startMainMenu: function () {
+		this.game.Director.stopTalking();
         this.game.state.start('MainMenu');
-        voice.stop();
     }
     
 }

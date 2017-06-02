@@ -6,10 +6,8 @@ PhaserGame.LevelFailure.prototype = {
     preload: function () {
         // LOAD XML
         //this.load.text('TEXT-LevelDialog', 'data/dialog' + this.game.SETUP_GameLevel + '.js'); 
-		this.load.image('BG-LevelFailure','assets/Level' + this.game.SETUP_GameLevel + '-Fail.jpg');
+		this.load.image('BG-LevelFailure','assets/GFX/Level' + this.game.SETUP_GameLevel + '-Fail.jpg');
 		
-        //this.load.image('BG-LevelFailure','assets/BG-LevelFailure.jpg');
-        this.load.audio('SOUND-LevelFailed','assets/SOUND-LevelFailed.mp3');
     },
     
     create: function () {
@@ -25,8 +23,8 @@ PhaserGame.LevelFailure.prototype = {
         levelFailureScreen.events.onInputDown.addOnce(this.replayLevel,this);
         
         music.destroy();
-        this.sound.play('SOUND-LevelFailed', 1, false);
-        
+		
+		this.game.Director.say('level' + this.game.SETUP_GameLevel + 'failure',1);
 		
 		/*
         // PARSE XML
@@ -44,6 +42,7 @@ PhaserGame.LevelFailure.prototype = {
     },
     
     replayLevel: function () {
+		this.game.Director.stopTalking();
         this.game.state.start('LevelPreload',true,false);
     }
     

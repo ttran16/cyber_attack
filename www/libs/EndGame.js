@@ -8,8 +8,8 @@ PhaserGame.EndGame.prototype = {
         //this.load.text('TEXT-LevelDialog', 'data/dialog' + this.game.SETUP_GameLevel + '.js'); 
         
         this.game.load.text('Credits', 'data/EndCredits.txt');
-        this.game.load.image('BG-EndGame','assets/BG-EndGame.jpg');
-        this.game.load.image('IMG-CoastlineLogo','assets/IMG-CoastlineLogo.png');
+        this.game.load.image('BG-EndGame','assets/GFX/BG-EndGame.jpg');
+        this.game.load.image('IMG-CoastlineLogo','assets/GFX/IMG-CoastlineLogo.png');
     },
     
     create: function () {
@@ -17,7 +17,7 @@ PhaserGame.EndGame.prototype = {
         endGameScreen.inputEnabled = true;
         endGameScreen.events.onInputDown.addOnce(this.endGame,this);
         
-        coastlineLogo = this.add.image(this.world.centerX, this.world.centerY-200, 'IMG-CoastlineLogo');
+        coastlineLogo = this.add.image(this.world.centerX, this.world.centerY, 'IMG-CoastlineLogo');
         coastlineLogo.anchor.set(0.5, 0.5);
         coastlineLogo.alpha = 0;
         
@@ -51,6 +51,7 @@ PhaserGame.EndGame.prototype = {
     
     endGame: function () {
         this.game.destroy();
+		window.location.reload();
     }
     
 }
