@@ -7,8 +7,10 @@ PhaserGame.HighScore.prototype = {
         // LOAD XML
         //this.load.text('TEXT-LevelDialog', 'data/dialog' + this.game.SETUP_GameLevel + '.js'); 
 		
-		this.game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
 		this.load.image('BG-HighScore','assets/GFX/BG-HighScore.jpg');
+		
+        this.load.text('DATA-highscore', this.game.game_config.highscore.get);
+		
     },
     
     create: function () {
@@ -16,10 +18,7 @@ PhaserGame.HighScore.prototype = {
         HighScore.inputEnabled = true;
         HighScore.events.onInputDown.addOnce(this.endGame,this);
 
-		
-		
-
-		var style = { font: "32px Audiowide", fill: "#ffffff", wordWrap: true, wordWrapWidth: HighScore.width, align: "center" };
+		var style = { font: "32px Audiowide", fill: "#ffffff", wordWrap: false, wordWrapWidth: HighScore.width, align: "center" };
 
 		title = this.game.add.text(0, 0, "HIGH SCORE", style);
 		title.anchor.set(0.5);
@@ -27,16 +26,49 @@ PhaserGame.HighScore.prototype = {
 		title.x = Math.floor(HighScore.x + HighScore.width / 2);
 		title.y = 100;
 
-		for(var i=0; i<10; i++)
+
+
+
+        var xml = this.cache.getText('DATA-highscore');
+        var parser = new DOMParser();
+        var scoreparser = parser.parseFromString(xml, "application/xml"); 
+        var x = scoreparser.getElementsByTagName("scores");
+        var scores = x[0].getElementsByTagName("score");
+
+
+
+
+
+
+		for(var i=0; i< Math.min(10,scores.length); i++)
 		{
-			text = this.game.add.text(0, 0, i +1 + '. ZZZ               00:00', style);
-			text.anchor.set(0.5);
-			text.fontSize='20px';
-			text.x = Math.floor(HighScore.x + HighScore.width / 2);
-			text.y = 150 + (50 * i);
+
+
+            var score = scores[i];
+            
+            // QUESTION DIFFICULTY LEVEL
+            var name = (score.getElementsByTagName("name")[0].childNodes[0].nodeValue);
+console.log(name);
+            var time = (score.getElementsByTagName("time")[0].childNodes[0].nodeValue);
+console.log(time);
+			time = this.formatTime(time);
+			var y =150 + (50 * i);
+
+			var txtname = this.game.add.text(0, 0, name, style);
+			txtname.anchor.set(0.0,0.5);
+			txtname.fontSize='20px';
+			txtname.x = Math.floor(HighScore.x + HighScore.width / 2) - 100;
+			txtname.y = y;
+
+			var txttime = this.game.add.text(0, 0, time, style);
+			txttime.anchor.set(1.0,0.5);
+			txttime.fontSize='20px';
+			txttime.x = Math.floor(HighScore.x + HighScore.width / 2) + 100;
+			txttime.y = y;
+
 		}
 
-		footer = this.game.add.text(0, 0, "Click to Continue", style);
+		footer = this.game.add.text(0, 0, "Click/Tap to Continue", style);
 		footer.fontSize='16px';
 		footer.anchor.set(0.5);
 			
@@ -44,20 +76,8 @@ PhaserGame.HighScore.prototype = {
 		footer.y = 650;
 
 		
-        /*
-		
-        // PARSE XML
-        var xml = this.cache.getText('TEXT-LevelDialog');
-        var parser = new DOMParser();
-        this.levelDialog = parser.parseFromString(xml, "application/xml"); 
-        var x = this.levelDialog.getElementsByTagName("dialog");
-        var content = (x[0].getElementsByTagName("levelSuccess")[0].childNodes[0].nodeValue);
         
-        var text = this.add.text(this.world.centerX-10, this.world.centerY-332, content, { font: "15pt Courier", fill: "#19cb65", stroke: "#119f4e", strokeThickness: 2, align: "left", wordWrap: true, wordWrapWidth: 460 });
-        text.anchor.set(0, 0);
-        text.alpha = 0;
-        this.game.add.tween(text).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0, 0, false);
-        */
+
     },
     voiceStopped: function(){
 		music.volume=1;
@@ -66,6 +86,20 @@ PhaserGame.HighScore.prototype = {
     endGame: function () {
         // this.game.SETUP_GameStyle = 'Arcade';
         this.game.state.start('EndGame',true,false);
-    }
+    },
+	formatTime: function (time) {
+		var minute = 0;
+		var second = 0;
+
+		minute = Math.floor(time / (60));
+		if(minute < 10) minute = "0" + minute;
+		
+		second = Math.floor(time % (60));
+		if(second < 10) second = "0" + second;
+
+		returnValue =  minute + ":" + second;
+		return returnValue;
+	}
     
 }
+

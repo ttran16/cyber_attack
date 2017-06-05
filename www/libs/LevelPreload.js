@@ -102,8 +102,8 @@ PhaserGame.LevelPreload.prototype = {
         this.load.spritesheet('SPRITE-HubRepair', 'assets/GFX/SPRITE-HubRepair.png', 111, 111, 10);
         
         //Load Level XML
-        this.load.text('TEXT-LevelSetup', 'data/setup' + this.game.SETUP_GameLevel + '.js');
-        this.load.text('TEXT-LevelDialog', 'data/dialog' + this.game.SETUP_GameLevel + '.js');
+        this.load.text('TEXT-LevelSetup', 'data/setup' + this.game.SETUP_GameLevel + '.xml');
+        this.load.text('TEXT-LevelDialog', 'data/dialog' + this.game.SETUP_GameLevel + '.xml');
                 
         //Load Question Related Images
         this.load.image('BG-QOverlay','assets/GFX/BG-QOverlay.png');

@@ -30,5 +30,9 @@ Config = function () {
 	this['main_menu_bg_video']['width'] = 1024;
 	this['main_menu_bg_video']['height'] = 768;
 	
+	this['highscore'] = {};
+	this['highscore']['get'] = '//apps.coastline.edu/games/Cyberwar-English/data/highscore.xml';
+	this['highscore']['set'] = '//apps.coastline.edu/games/Cyberwar-English/data/highscore.cfm';
+	
 	
 };

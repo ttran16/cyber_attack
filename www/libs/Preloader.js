@@ -31,10 +31,10 @@ PhaserGame.Preloader.prototype = {
         this.load.audio('SOUND-Click','assets/SFX/SOUND-click.mp3');
         this.load.audio('SOUND-Select','assets/SFX/SOUND-select.mp3');
         
-        this.load.text('TEXT-LevelQuestions1', 'data/questions1.js');
-        this.load.text('TEXT-LevelQuestions2', 'data/questions2.js');
-        this.load.text('TEXT-LevelQuestions3', 'data/questions3.js');
-        this.load.text('TEXT-LevelQuestions4', 'data/questions4.js');
+        this.load.text('TEXT-LevelQuestions1', 'data/questions1.xml');
+        this.load.text('TEXT-LevelQuestions2', 'data/questions2.xml');
+        this.load.text('TEXT-LevelQuestions3', 'data/questions3.xml');
+        this.load.text('TEXT-LevelQuestions4', 'data/questions4.xml');
         
 	},
 
