@@ -37,7 +37,7 @@ PhaserGame.Intro.prototype = {
         
         titleScreen = this.add.sprite(0, 0, 'BG-MainMenu');
 		titleVideo.unlock();
-        titleVideo.play();
+		
 		titleScreen.width=this.game.width;
 		titleScreen.height=this.game.height;
 		

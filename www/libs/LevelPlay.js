@@ -102,17 +102,17 @@ PhaserGame.LevelPlay.prototype = {
     // UI GROUP
     buildGroup_UI: function () {
         // ADD UI BUTTONS AND ACTIONS
-		this.game.TIMER_BG = this.game.add.sprite(this.game.width/2, 718, 'TIMER-BG');
-		this.game.TIMER_BG.anchor.set(0.5, 0);
+		this.game.TIMER_BG = this.game.add.sprite(this.game.width/2, 745, 'TIMER-BG');
+		this.game.TIMER_BG.anchor.set(0.5, 0.5);
 		
-		this.timerTextMinutes = this.add.text(this.game.width/2 - 10, 728, '00' , { font: "25pt Michroma", fill: "#00ff00", align: "left", wordWrap: true, wordWrapWidth: 460 });
-        this.timerTextMinutes.anchor.set(1, 0);
+		this.timerTextMinutes = this.add.text(this.game.width/2 - 10, 745, '00' , { font: "20pt Michroma", fill: "#00ff00", align: "left", wordWrap: true, wordWrapWidth: 460 });
+        this.timerTextMinutes.anchor.set(1, 0.5);
 		
-		this.timerTextSeparator = this.add.text(this.game.width/2, 728, ':' , { font: "25pt Michroma", fill: "#00ff00", align: "left", wordWrap: true, wordWrapWidth: 460 });
-        this.timerTextSeparator.anchor.set(0.5, 0);
+		this.timerTextSeparator = this.add.text(this.game.width/2, 745, ':' , { font: "20pt Michroma", fill: "#00ff00", align: "left", wordWrap: true, wordWrapWidth: 460 });
+        this.timerTextSeparator.anchor.set(0.5, 0.5);
 		
-		this.timerTextSeconds = this.add.text(this.game.width/2 + 10, 728, '00' , { font: "25pt Michroma", fill: "#00ff00", align: "left", wordWrap: true, wordWrapWidth: 460 });
-        this.timerTextSeconds.anchor.set(0, 0);
+		this.timerTextSeconds = this.add.text(this.game.width/2 + 10, 745, '00' , { font: "20pt Michroma", fill: "#00ff00", align: "left", wordWrap: true, wordWrapWidth: 460 });
+        this.timerTextSeconds.anchor.set(0, 0.5);
 		
         this.game.ICON_Restore = this.game.add.sprite(950, 718, 'ICON-Restore-Off');
         this.game.ICON_Restore.inputEnabled = true;
@@ -501,6 +501,7 @@ PhaserGame.LevelPlay.prototype = {
 			this.game.timetracker+=this.game.time.elapsedMS;
 			
 			this.timerTextSeconds.visible=true;
+			this.timerTextMinutes.visible=true;
 			this.timerTextSeconds.setText(this.game.Functions.getFormatedSeconds(this.game.timetracker /1000));
 			this.timerTextMinutes.setText(this.game.Functions.getFormatedMinutes(this.game.timetracker /1000));
 	
