@@ -260,7 +260,8 @@ Questions.prototype = {
             var hubRestored = -1;   
             //soundIncorrect.play();
 			var RepairHub;
-			var repair_index = this.LevelPlay.Hubs.locateLeastDamagedHub();
+			//repair weakest hub
+			var repair_index = this.LevelPlay.Hubs.weakestHub();
 			if(this.LevelPlay.game.AttackHubs[repair_index].damage < this.LevelPlay.game.AttackHubs[repair_index].max_damage)
 			{
 				if(this.LevelPlay.game.AttackHubs[repair_index].damage <=0)

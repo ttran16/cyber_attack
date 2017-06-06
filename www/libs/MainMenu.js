@@ -79,7 +79,7 @@ PhaserGame.MainMenu.prototype = {
     ,
 	
     startArcade: function () {
-        this.game.SETUP_GameLevel = 4;
+        this.game.SETUP_GameLevel = 1;
         this.game.SETUP_GameStyle = 'Arcade';
 		mainMenuVideo.stop();
         this.game.state.start('LevelPreload',true,false);

@@ -11,6 +11,7 @@ PhaserGame.HighScore.prototype = {
 		
         this.load.text('DATA-highscore', this.game.game_config.highscore.get);
 		
+		this.timer = 0;
     },
     
     create: function () {
@@ -39,6 +40,13 @@ PhaserGame.HighScore.prototype = {
 
 
 
+        var time = this.game.Functions.formatTime(this.game.timetracker/1000);
+		this.mytime = this.game.add.text(0, 0, ' YOUR TIME: ' + time, style);
+		this.mytime.anchor.set(0.5,0.5);
+		this.mytime.fontSize='20px';
+		this.mytime.x = Math.floor(HighScore.x + HighScore.width / 2);
+		this.mytime.y = 150;
+
 
 		for(var i=0; i< Math.min(10,scores.length); i++)
 		{
@@ -48,21 +56,21 @@ PhaserGame.HighScore.prototype = {
             
             // QUESTION DIFFICULTY LEVEL
             var name = (score.getElementsByTagName("name")[0].childNodes[0].nodeValue);
-console.log(name);
+
             var time = (score.getElementsByTagName("time")[0].childNodes[0].nodeValue);
-console.log(time);
-			time = this.formatTime(time);
-			var y =150 + (50 * i);
+
+			time = this.game.Functions.formatTime(time);
+			var y =200 + (40 * i);
 
 			var txtname = this.game.add.text(0, 0, name, style);
 			txtname.anchor.set(0.0,0.5);
-			txtname.fontSize='25px';
+			txtname.fontSize='20px';
 			txtname.x = Math.floor(HighScore.x + HighScore.width / 2) - 100;
 			txtname.y = y;
 
 			var txttime = this.game.add.text(0, 0, time, style);
 			txttime.anchor.set(1.0,0.5);
-			txttime.fontSize='25px';
+			txttime.fontSize='20px';
 			txttime.x = Math.floor(HighScore.x + HighScore.width / 2) + 100;
 			txttime.y = y;
 
@@ -79,6 +87,16 @@ console.log(time);
         
 
     },
+	update:function()
+	{
+		   
+		this.timer += this.game.time.elapsed; //this is in ms, not seconds.    
+		if ( this.timer >= 1000 )    
+		{        
+			this.timer -= 1000;        
+			this.mytime.visible = !this.mytime.visible;    
+		}
+	},
     voiceStopped: function(){
 		music.volume=1;
 	},
@@ -86,20 +104,7 @@ console.log(time);
     endGame: function () {
         // this.game.SETUP_GameStyle = 'Arcade';
         this.game.state.start('EndGame',true,false);
-    },
-	formatTime: function (time) {
-		var minute = 0;
-		var second = 0;
-
-		minute = Math.floor(time / (60));
-		if(minute < 10) minute = "0" + minute;
-		
-		second = Math.floor(time % (60));
-		if(second < 10) second = "0" + second;
-
-		returnValue =  minute + ":" + second;
-		return returnValue;
-	}
+    }
     
 }
 

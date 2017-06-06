@@ -9,7 +9,7 @@ PhaserGame.LevelSuccess.prototype = {
 		
 		this.load.image('BG-LevelSuccess','assets/GFX/Level' + this.game.SETUP_GameLevel + '-Success.jpg');
 		
-		this.load.audio('SOUND-LevelSuccess','assets/VOICE/LEVEL' + this.game.SETUP_GameLevel + 'SUCCESS.mp3');
+		
     },
     
     create: function () {
@@ -21,7 +21,11 @@ PhaserGame.LevelSuccess.prototype = {
         
         
         music.destroy();
-        voice=this.sound.play('SOUND-LevelSuccess', 1, false);
+		
+		
+		this.game.Director.say('level' + this.game.SETUP_GameLevel + 'success',1);
+		
+		
         /*
         // PARSE XML
         var xml = this.cache.getText('TEXT-LevelDialog');
@@ -40,7 +44,8 @@ PhaserGame.LevelSuccess.prototype = {
     nextLevel: function () {
         
         this.game.SETUP_GameLevel++;
-        voice.destroy();
+		
+		this.game.Director.stopTalking();
         if (this.game.SETUP_GameLevel == 5) {
             this.game.state.start('Intro');
         } else {

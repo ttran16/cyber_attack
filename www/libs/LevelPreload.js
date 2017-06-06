@@ -90,6 +90,9 @@ PhaserGame.LevelPreload.prototype = {
         this.load.image('ICON-Help','assets/GFX/ICON-Help.png');
         this.load.image('ICON-Debug','assets/GFX/ICON-Debug-On.png');
         
+		//timer bg
+        this.load.image('TIMER-BG','assets/GFX/TimerBG.png');
+
         //Load Bonus Related Images
         this.load.image('BONUS-5050','assets/GFX/BONUS-5050.jpg');
         this.load.image('BONUS-Attack','assets/GFX/BONUS-Attack.jpg');

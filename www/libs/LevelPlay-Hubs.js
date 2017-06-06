@@ -351,7 +351,7 @@ Hubs.prototype = {
         console.log("activating hub " + sprite.index);
         // CANCEL ASSIST PROMPT
         this.LevelPlay.assistPromptStop();
-        
+        this.LevelPlay.game.ticking=true;
         // VAR 1 = THE CLICKED ATTACK HUB
         this.LevelPlay.game.DATA_QuestionHub = sprite.index;
         
@@ -462,8 +462,8 @@ Hubs.prototype = {
         
     },
 	
-    locateLeastDamagedHub: function () {
-        // Locate damaged Hub
+    weakestHub: function () {
+        // Locate most damaged Hub
 		var lowest=99999999999;
 		var return_index=0;
         for (var i = 0; i < this.LevelPlay.game.AttackHubs.length; i++) {
@@ -478,8 +478,8 @@ Hubs.prototype = {
 		
     },
     
-    locateMostDamagedHub: function () {
-        // Locate damaged Hub
+    strongestHub: function () {
+        // Locate least damaged Hub
 		var highest=0;
 		var return_index=0;
         for (var i = 0; i < this.LevelPlay.game.AttackHubs.length; i++) {

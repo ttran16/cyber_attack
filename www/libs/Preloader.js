@@ -5,7 +5,7 @@ PhaserGame.Preloader = function (game) {
 	game.Director = new Director(game);
     this.ready = false;
 	
-	
+	game.Functions = new Functions(game);
 	
 };
 
