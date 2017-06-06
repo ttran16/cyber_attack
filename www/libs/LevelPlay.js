@@ -42,7 +42,7 @@ PhaserGame.LevelPlay.prototype = {
         this.buildGroup_Bonus();
 
 		this.game.ticking=false;
-		
+		this.flashtimer = 0;
         
         // START THE PHYSICS ENGINE
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -493,18 +493,29 @@ PhaserGame.LevelPlay.prototype = {
 		//should only check when needed, not on update
         if(this.game.ticking==true)
 		{
+			
 			if(isNaN(this.game.timetracker))
 			{
 				this.game.timetracker=0;
 			}
 			this.game.timetracker+=this.game.time.elapsedMS;
 			
-			
+			this.timerTextSeconds.visible=true;
 			this.timerTextSeconds.setText(this.game.Functions.getFormatedSeconds(this.game.timetracker /1000));
 			this.timerTextMinutes.setText(this.game.Functions.getFormatedMinutes(this.game.timetracker /1000));
-			
-			
-			
+	
+		}
+		else
+		{
+				
+			this.flashtimer += this.game.time.elapsed; //this is in ms, not seconds.    
+			if ( this.flashtimer >= 1000 )    
+			{        
+				this.flashtimer -= 1000;        
+				this.timerTextSeconds.visible = !this.timerTextSeconds.visible;    
+				this.timerTextMinutes.visible = !this.timerTextMinutes.visible;    
+				
+			}
 			
 		}
 
