@@ -56,13 +56,13 @@ console.log(time);
 
 			var txtname = this.game.add.text(0, 0, name, style);
 			txtname.anchor.set(0.0,0.5);
-			txtname.fontSize='20px';
+			txtname.fontSize='25px';
 			txtname.x = Math.floor(HighScore.x + HighScore.width / 2) - 100;
 			txtname.y = y;
 
 			var txttime = this.game.add.text(0, 0, time, style);
 			txttime.anchor.set(1.0,0.5);
-			txttime.fontSize='20px';
+			txttime.fontSize='25px';
 			txttime.x = Math.floor(HighScore.x + HighScore.width / 2) + 100;
 			txttime.y = y;
 
