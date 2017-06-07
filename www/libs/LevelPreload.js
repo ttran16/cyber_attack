@@ -142,10 +142,10 @@ PhaserGame.LevelPreload.prototype = {
 		this.preloadBar.cropEnabled = false;
         
         // Play Music
-        music.destroy();
-        music = this.add.audio('MUSIC-LevelIntro',0.3,true);
-        music.volume = 0.3;
-        music.play();
+        this.game.music.destroy();
+        this.game.music = this.add.audio('MUSIC-LevelIntro',0.3,true);
+        this.game.music.volume = 0.3;
+        this.game.music.play();
 		
 		/*
 		voice=this.add.audio('VOICE-SCENARIO',1,false);

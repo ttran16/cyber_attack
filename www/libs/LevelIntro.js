@@ -41,11 +41,11 @@ PhaserGame.LevelIntro.prototype = {
         */
     },
     voiceStopped: function(){
-		music.volume=1;
+		this.game.music.volume=1;
 	},
     
     levelPlay: function () {
-		music.destroy();
+		this.game.music.destroy();
 		this.game.Director.stopTalking();
 		this.game.Director.say('start',1);
         this.game.state.start('LevelPlay');

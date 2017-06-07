@@ -22,7 +22,7 @@ PhaserGame.LevelFailure.prototype = {
         levelFailureScreen.inputEnabled = true;
         levelFailureScreen.events.onInputDown.addOnce(this.replayLevel,this);
         
-        music.destroy();
+        this.game.music.destroy();
 		
 		this.game.Director.say('level' + this.game.SETUP_GameLevel + 'failure',1);
 		

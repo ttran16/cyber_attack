@@ -33,16 +33,24 @@ PhaserGame.Boot.prototype = {
 
     preload: function () {
 
+        this.load.image('BG-MainMenu','assets/GFX/BG-MainMenu.jpg');
         //  Here we load the assets required for our preloader (in this case a background and a loading bar)
         this.load.image('preloaderBackground', 'assets/GFX/BG-Default.jpg');
         this.load.image('preloaderForeground', 'assets/GFX/BG-Loading.png');
         this.load.image('preloaderProgress', 'assets/GFX/BG-Loading-Progress.png');
 		
+        this.audiowide_preload = this.game.add.text(0, 0, '', { font: "25pt Audiowide", fill: "#000000", stroke: "#000000", strokeThickness: 1 });
+		
+        this.Michroma_preloader = this.add.text(0, 0, '', { font: "40pt Michroma", fill: "#000000"});
     },
 
     create: function () {
 		
 		
+        this.audiowide_preload = this.game.add.text(0, 0, '', { font: "25pt Audiowide", fill: "#000000", stroke: "#000000", strokeThickness: 1 });
+		
+        this.Michroma_preloader = this.add.text(0, 0, '', { font: "40pt Michroma", fill: "#000000"});
+ 		
 		
 		//make stage scale with view port
 		this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;

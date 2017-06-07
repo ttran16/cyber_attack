@@ -98,7 +98,7 @@ PhaserGame.HighScore.prototype = {
 		}
 	},
     voiceStopped: function(){
-		music.volume=1;
+		this.game.music.volume=1;
 	},
     
     endGame: function () {

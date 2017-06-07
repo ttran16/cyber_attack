@@ -14,7 +14,7 @@ PhaserGame.Instructions.prototype = {
 		
 		instructionsScreen.width=this.game.width;
 		instructionsScreen.height=this.game.height;
-		music.volume = 0.1;
+		this.game.music.volume = 0.1;
 		
 		
 		this.game.Director.say('instructions',1);

@@ -18,8 +18,8 @@ PhaserGame.EndLevels.prototype = {
         levelSuccessScreen.inputEnabled = true;
         levelSuccessScreen.events.onInputDown.addOnce(this.endGame,this);
         
-        music.destroy();
-        music = this.sound.play('SOUND-EndGame', 0.3, true);
+        this.game.music.destroy();
+        this.game.music = this.sound.play('SOUND-EndGame', 0.3, true);
 		
 		this.game.Director.say('level4success',1,this.voiceStopped);
 		
@@ -39,7 +39,7 @@ PhaserGame.EndLevels.prototype = {
         */
     },
     voiceStopped: function(){
-		music.volume=1;
+		this.game.music.volume=1;
 	},
     
     endGame: function () {

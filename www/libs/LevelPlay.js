@@ -11,10 +11,10 @@ PhaserGame.LevelPlay.prototype = {
         // Begin Level Music
 		
 		
-        music.destroy();      
-        music = this.add.audio('MUSIC-Level1');
-        music.volume = .5;
-        music.play();
+        this.game.music.destroy();      
+        this.game.music = this.add.audio('MUSIC-Level1');
+        this.game.music.volume = .5;
+        this.game.music.play();
         
         // Setup Sound EFX
         soundSelect = this.add.audio('SOUND-Select');

@@ -69,16 +69,16 @@ PhaserGame.MainMenu.prototype = {
         this.game.state.start('Practice');
     },
 	update: function() {
-		music.volume = 1.0;
+		this.game.music.volume = 1.0;
 	},
 	pauseUpdate: function () {
-		music.volume = 0.0;
-		music.pause
+		this.game.music.volume = 0.0;
+		this.game.music.pause
     }
     ,
 	
     startArcade: function () {
-        this.game.SETUP_GameLevel = 1;
+        this.game.SETUP_GameLevel = 4;
         this.game.SETUP_GameStyle = 'Arcade';
 		mainMenuVideo.stop();
         this.game.state.start('LevelPreload',true,false);

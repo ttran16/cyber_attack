@@ -1,6 +1,5 @@
 Director = function (game) {
 	console.log('Director Initialized');
-	console.log(game);
 	this.game=game;
 };
 

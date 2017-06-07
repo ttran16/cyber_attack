@@ -20,11 +20,11 @@ PhaserGame.Preloader.prototype = {
 		this.load.video('BG-TitleVideo','assets/VIDEO/Intro.mp4');
         this.load.image('BG-Black','assets/GFX/BG-Black.jpg');
         
+		
 		this.load.video('BG-MainMenuVideo','assets/VIDEO/Main.mp4');
-        this.load.image('BG-MainMenu','assets/GFX/BG-MainMenu.jpg');
         this.load.image('BTN-Wide','assets/GFX/BTN-Wide.png');
         
-        this.load.audio('MUSIC-Intro','assets/MUSIC/MUSIC-Intro.mp3');
+        this.load.audio('MUSIC-Intro','assets/Music/MUSIC-Intro.mp3');
         
         this.load.audio('VOICE-Instructions','assets/VOICE/Instructions.mp3');
         
@@ -35,16 +35,60 @@ PhaserGame.Preloader.prototype = {
         this.load.text('TEXT-LevelQuestions2', 'data/questions2.xml');
         this.load.text('TEXT-LevelQuestions3', 'data/questions3.xml');
         this.load.text('TEXT-LevelQuestions4', 'data/questions4.xml');
-        
+		
+		
+		
+		
+        titleScreen = this.add.sprite(0, 0, 'BG-MainMenu');		
+		titleScreen.width=this.game.width;
+		titleScreen.height=this.game.height;
+		
+        this.prompter = this.add.text(this.world.centerX, this.world.centerY-100, 'Loading...', { font: "30pt Michroma", fill: "#00ff00"});
+        this.prompter.anchor.set(0.5);
+		
+		
+		
+        console.log('preload');
 	},
 
 	create: function () {
         // Stay Black        
+		console.log('preload create');
+        
+		
+        this.titleVideo = this.game.add.video('BG-TitleVideo');
+        this.titleVideo.addToWorld(0, 0, 0, 0, this.game.width/this.game.game_config.intro_video.width, this.game.height/this.game.game_config.intro_video.height);
+
+		this.titleVideo.alpha=0;
+		
+		
+        this.mainMenuVideo = this.game.add.video('BG-MainMenuVideo');
+        this.mainMenuVideo.addToWorld(0, 0, 0, 0, this.game.width/this.game.game_config.main_menu_bg_video.width, this.game.height/this.game.game_config.main_menu_bg_video.height);
+
+		this.mainMenuVideo.alpha=0;
+		
+        this.game.music = this.add.audio('MUSIC-Intro');
+        this.game.music.play();
+		
+		
+		
+		this.prompter.alpha=0;
+		
+        this.prompter = this.add.text(this.world.centerX, this.world.centerY-100, '', { font: "30pt Michroma", fill: "#00ff00"});
+        this.prompter.anchor.set(0.5);
+		
+		this.prompter.alpha=0;
+		this.texttween = this.game.add.tween(this.prompter).to( { alpha: 1 }, 1000, Phaser.Easing.Linear.None, true, 0, 0, false);
+        this.texttween.pause();
+		this.texttween.repeat(100,0);
+		this.shouldbeplaying=true;
 	},
     
-    loadComplete: function () {
-        this.ready = true;
+    loadComplete: function () {this.ready = true;
+		this.titleVideo.destroy();
+		this.mainMenuVideo.destroy();
 		this.state.start('Intro');  
+		
     },
 
 	update: function () {
@@ -57,11 +101,19 @@ PhaserGame.Preloader.prototype = {
 		
 		//	If you don't have any music in your game then put the game.state.start line into the create function and delete
 		//	the update function completely.
-		
 		if (this.cache.isSoundDecoded('MUSIC-Intro') && this.ready == false)
 		{
-			// Give it one more second
-            this.game.time.events.add(500, this.loadComplete, this);
+			if(this.game.music.isPlaying)
+			{
+				this.ready=true;
+				// Give it one more second
+				this.game.time.events.add(500, this.loadComplete, this);
+			}
+			else if(this.shouldbeplaying)
+			{
+				this.prompter.setText('Tap to Begin');
+				this.texttween.resume();
+			}
 		}
 
 	}

@@ -23,8 +23,8 @@ Config = function () {
 	this['canvas']['height'] = 768;
 	
 	this['intro_video'] = {};
-	this['intro_video']['width'] = 512;
-	this['intro_video']['height'] = 384;
+	this['intro_video']['width'] = 640;
+	this['intro_video']['height'] = 480;
 	
 	this['main_menu_bg_video'] = {};
 	this['main_menu_bg_video']['width'] = 1024;

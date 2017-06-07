@@ -1,46 +1,71 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<xmlData>
-<scores>
-	<score>
-		<name>AAA</name>
-		<time>100</time>
-	</score>
-	<score>
-		<name>BBB</name>
-		<time>200</time>
-	</score>
-	<score>
-		<name>CCC</name>
-		<time>300</time>
-	</score>
-	<score>
-		<name>DDD</name>
-		<time>400</time>
-	</score>
-	<score>
-		<name>EEE</name>
-		<time>500</time>
-	</score>
-	<score>
-		<name>FFF</name>
-		<time>600</time>
-	</score>
-	<score>
-		<name>GGG</name>
-		<time>700</time>
-	</score>
-	<score>
-		<name>HHH</name>
-		<time>800</time>
-	</score>
-	<score>
-		<name>III</name>
-		<time>900</time>
-	</score>
-	<score>
-		<name>JJJ</name>
-		<time>1000</time>
-	</score>
-	
-</scores>
-</xmlData>
+<?xml version="1.0" encoding="UTF-8"?>
+<xmlData>   
+        <scores>
+            
+                <score>
+                  <name>UUU</name>
+                  <time>5</time>
+                </score>
+            
+                <score>
+                  <name>YYY</name>
+                  <time>14</time>
+                </score>
+            
+                <score>
+                  <name>XXX</name>
+                  <time>34</time>
+                </score>
+            
+                <score>
+                  <name>TTT</name>
+                  <time>50</time>
+                </score>
+            
+                <score>
+                  <name>TTT</name>
+                  <time>50</time>
+                </score>
+            
+                <score>
+                  <name>CCC</name>
+                  <time>56</time>
+                </score>
+            
+                <score>
+                  <name>AAA</name>
+                  <time>100</time>
+                </score>
+            
+                <score>
+                  <name>BBB</name>
+                  <time>200</time>
+                </score>
+            
+                <score>
+                  <name>EEE</name>
+                  <time>444</time>
+                </score>
+            
+                <score>
+                  <name>XXX</name>
+                  <time>540</time>
+                </score>
+            
+                <score>
+                  <name>JJJ</name>
+                  <time>1000</time>
+                </score>
+            
+                <score>
+                  <name>TTT</name>
+                  <time>45000</time>
+                </score>
+            
+                <score>
+                  <name>TTT</name>
+                  <time>45000</time>
+                </score>
+            
+        </scores>   
+    </xmlData>

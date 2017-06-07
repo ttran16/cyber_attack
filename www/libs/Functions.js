@@ -1,6 +1,5 @@
 Functions = function (game) {
-	console.log('Director Initialized');
-	console.log(game);
+	console.log('Functions Initialized');
 	this.game=game;
 };
 
@@ -18,7 +17,7 @@ Functions.prototype = {
 		returnValue =  minute + ":" + second;
 		return returnValue;
 	},
-	getFormatedSeconds(time)
+	getFormatedSeconds:function(time)
 	{
 		if(isNaN(time))
 		{
@@ -32,7 +31,7 @@ Functions.prototype = {
 		return second;
 		
 	},
-	getFormatedMinutes(time)
+	getFormatedMinutes:function(time)
 	{		
 		if(isNaN(time))
 		{

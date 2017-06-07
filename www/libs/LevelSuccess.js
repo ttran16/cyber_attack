@@ -20,7 +20,7 @@ PhaserGame.LevelSuccess.prototype = {
         levelSuccessScreen.events.onInputDown.addOnce(this.nextLevel,this);
         
         
-        music.destroy();
+        this.game.music.destroy();
 		
 		
 		this.game.Director.say('level' + this.game.SETUP_GameLevel + 'success',1);
