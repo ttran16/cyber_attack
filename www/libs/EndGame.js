@@ -7,12 +7,10 @@ PhaserGame.EndGame.prototype = {
         // LOAD XML
         //this.load.text('TEXT-LevelDialog', 'data/dialog' + this.game.SETUP_GameLevel + '.js'); 
         
-        this.game.load.text('Credits', 'data/EndCredits.txt');
-        this.game.load.image('BG-EndGame','assets/GFX/BG-EndGame.jpg');
-        this.game.load.image('IMG-CoastlineLogo','assets/GFX/IMG-CoastlineLogo.png');
     },
     
     create: function () {
+		console.log('begin end');
         endGameScreen = this.add.image(0, 0, 'BG-EndGame');
         endGameScreen.inputEnabled = true;
         endGameScreen.events.onInputDown.addOnce(this.endGame,this);
@@ -37,7 +35,7 @@ PhaserGame.EndGame.prototype = {
         // Fade In Coastline Logo after 62 seconds
         this.game.time.events.add(62000, this.showCoastlineLogo, this);
         
-        
+        console.log('end end');
         
     },
     
@@ -51,8 +49,12 @@ PhaserGame.EndGame.prototype = {
     },
     
     endGame: function () {
-        this.game.destroy();
-		window.location.reload();
+		if(this.game.returnState.length)
+			this.game.state.start(this.game.returnState,true,false);
+		else{
+			this.game.destroy();
+			window.location.reload();
+		}
     }
     
 }

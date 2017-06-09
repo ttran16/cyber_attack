@@ -31,7 +31,7 @@ Config = function () {
 	this['main_menu_bg_video']['height'] = 768;
 	
 	this['highscore'] = {};
-	this['highscore']['get'] = 'https://apps.coastline.edu/games/Cyberwar-English/data/highscore.xml';
+	this['highscore']['get'] = 'https://apps.coastline.edu/games/Cyberwar-English/data/highscore.txt';
 	this['highscore']['set'] = 'https://apps.coastline.edu/games/Cyberwar-English/data/highscore.cfm';
 	
 	

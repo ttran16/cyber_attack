@@ -19,7 +19,7 @@ PhaserGame.EndLevels.prototype = {
         levelSuccessScreen.events.onInputDown.addOnce(this.endGame,this);
         
         this.game.music.destroy();
-        this.game.music = this.sound.play('SOUND-EndGame', 0.3, true);
+        this.game.music = this.sound.play('SOUND-EndGame', 0.2, true);
 		
 		this.game.Director.say('level4success',1,this.voiceStopped);
 		

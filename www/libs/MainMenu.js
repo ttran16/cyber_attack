@@ -8,33 +8,46 @@ PhaserGame.MainMenu.prototype = {
         //titleScreen = this.add.sprite(0, 0, 'BG-TitleScreen');
         //mainMenuScreen = this.add.image(0, 0, 'BG-MainMenu');
         //mainMenuScreen.alpha = 0;
+		
     },
     
     create: function () {
-        
+		this.game.Functions.loadHighScore();
+        this.game.returnState='';
+		this.buttonCount = 0;
+		
+		
+		
+		
         mainMenuVideo = this.game.add.video('BG-MainMenuVideo');
         mainMenuVideo.addToWorld(0, 0, 0, 0, this.game.width/this.game.game_config.main_menu_bg_video.width, this.game.height/this.game.game_config.main_menu_bg_video.height);
         mainMenuVideo.unlock();
+		
+		this.game.music.resume();
+		
         text = this.add.text(this.world.centerX, this.world.centerY-100, 'Select an option:', { font: "20pt Michroma", fill: "#ffffff", stroke: "#cccccc", strokeThickness: 0 });
         text.anchor.set(0.5);
         
-        // Button - Instructions
-        btn_instructions = this.add.sprite(this.world.centerX, this.world.centerY, 'BTN-Wide');
-        btn_instructions.anchor.setTo(0.50, 0.50);        
-        btn_instructions.inputEnabled = true;
-        btn_instructions.input.useHandCursor = true;
-        btn_instructionsText = this.game.add.text(btn_instructions.x, btn_instructions.y, 'Instructions', { font: "15pt Michroma", fill: "#19cb65", stroke: "#119f4e", strokeThickness: 0 });
-        btn_instructionsText.anchor.setTo(0.50, 0.50);
-        btn_instructions.events.onInputDown.addOnce(this.startInstructions,this);
-        
+        this.game.GROUP_MainMenu = this.add.group();
+        this.game.GROUP_MainMenu.add(text);
+
         // Button - Arcade
-        btn_arcade = this.add.sprite(this.world.centerX, this.world.centerY+100, 'BTN-Wide');
-        btn_arcade.anchor.setTo(0.50, 0.50);        
-        btn_arcade.inputEnabled = true;
-        btn_arcade.input.useHandCursor = true;
-        btn_arcadeText = this.game.add.text(btn_arcade.x, btn_arcade.y, 'Play Game', { font: "15pt Michroma", fill: "#19cb65", stroke: "#119f4e", strokeThickness: 0 });
-        btn_arcadeText.anchor.setTo(0.50, 0.50);
-        btn_arcade.events.onInputDown.addOnce(this.startArcade,this);
+		this.addButton('Play Game', this.startArcade);
+    
+        // Button - Instructions
+		this.addButton('Instructions', this.startInstructions);
+        
+        // Button - High Score
+		this.addButton('High Score', this.startHighScore);
+		
+        // Button - Credits
+		this.addButton('Credits', this.startCredit);
+		
+    
+        this.game.GROUP_MainMenu.alpha = 0;
+        
+        this.game.add.tween(this.game.GROUP_MainMenu).to( { alpha: 1 }, 1000, Phaser.Easing.Linear.None, true, 0, 0, false);
+        
     
         // GlobalGameCounters
         this.game.counter_QuestionsAsked = 0;
@@ -47,17 +60,27 @@ PhaserGame.MainMenu.prototype = {
         this.game.POWERUP_Restore = 1;
         
         
-        this.game.GROUP_MainMenu = this.add.group();
-        this.game.GROUP_MainMenu.add(text);
-        this.game.GROUP_MainMenu.add(btn_instructions);
-        this.game.GROUP_MainMenu.add(btn_instructionsText);
-        this.game.GROUP_MainMenu.add(btn_arcade);
-        this.game.GROUP_MainMenu.add(btn_arcadeText);
-        this.game.GROUP_MainMenu.alpha = 0;
-        
-        this.game.add.tween(this.game.GROUP_MainMenu).to( { alpha: 1 }, 1000, Phaser.Easing.Linear.None, true, 0, 0, false);
-        
     },
+	addButton:function(label, callback)
+	{
+		if(isNaN(this.buttonCount))
+		{
+			this.buttonCount = 0;
+		}
+		
+        btn_new = this.add.sprite(this.world.centerX, this.world.centerY + (this.buttonCount * 75), 'BTN-Wide');
+        btn_new.anchor.setTo(0.50, 0.50);        
+        btn_new.inputEnabled = true;
+        btn_new.input.useHandCursor = true;
+        btn_newText = this.game.add.text(btn_new.x, btn_new.y, label, { font: "15pt Michroma", fill: "#19cb65", stroke: "#119f4e", strokeThickness: 0 });
+        btn_newText.anchor.setTo(0.50, 0.50);
+        btn_new.events.onInputDown.addOnce(callback,this);
+		
+		this.game.GROUP_MainMenu.add(btn_new);
+		this.game.GROUP_MainMenu.add(btn_newText);
+		
+		this.buttonCount++;
+	},
     
     startInstructions: function () {
         this.game.state.start('Instructions');
@@ -80,8 +103,22 @@ PhaserGame.MainMenu.prototype = {
     startArcade: function () {
         this.game.SETUP_GameLevel = 4;
         this.game.SETUP_GameStyle = 'Arcade';
-		mainMenuVideo.stop();
+		mainMenuVideo.destroy();
+		this.game.music.destroy();
         this.game.state.start('LevelPreload',true,false);
-    }
+    },
+	startHighScore: function(){
+		this.game.returnState='MainMenu';
+		this.game.music.pause();
+		mainMenuVideo.destroy();
+        this.game.state.start('HighScore',true,false);
+	},
+	startCredit: function() {
+		this.game.returnState='MainMenu';
+		this.game.music.pause();
+		mainMenuVideo.destroy();
+        this.game.state.start('EndGame',true,false);
+		
+	}
     
 }

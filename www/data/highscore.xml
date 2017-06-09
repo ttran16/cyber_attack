@@ -1,71 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmlData>   
-        <scores>
-            
-                <score>
-                  <name>UUU</name>
-                  <time>5</time>
-                </score>
-            
-                <score>
-                  <name>YYY</name>
-                  <time>14</time>
-                </score>
-            
-                <score>
-                  <name>XXX</name>
-                  <time>34</time>
-                </score>
-            
-                <score>
-                  <name>TTT</name>
-                  <time>50</time>
-                </score>
-            
-                <score>
-                  <name>TTT</name>
-                  <time>50</time>
-                </score>
-            
-                <score>
-                  <name>CCC</name>
-                  <time>56</time>
-                </score>
-            
-                <score>
-                  <name>AAA</name>
-                  <time>100</time>
-                </score>
-            
-                <score>
-                  <name>BBB</name>
-                  <time>200</time>
-                </score>
-            
-                <score>
-                  <name>EEE</name>
-                  <time>444</time>
-                </score>
-            
-                <score>
-                  <name>XXX</name>
-                  <time>540</time>
-                </score>
-            
-                <score>
-                  <name>JJJ</name>
-                  <time>1000</time>
-                </score>
-            
-                <score>
-                  <name>TTT</name>
-                  <time>45000</time>
-                </score>
-            
-                <score>
-                  <name>TTT</name>
-                  <time>45000</time>
-                </score>
-            
-        </scores>   
-    </xmlData>
+	<scores>
+		
+			<score>
+			  <name>TTT</name>
+			  <time>50</time>
+			</score>
+		
+			<score>
+			  <name>THO</name>
+			  <time>10000</time>
+			</score>
+		
+			<score>
+			  <name>TES</name>
+			  <time>20000</time>
+			</score>
+		
+			<score>
+			  <name>TOA</name>
+			  <time>20000</time>
+			</score>
+		
+			<score>
+			  <name>TES</name>
+			  <time>30000</time>
+			</score>
+		
+			<score>
+			  <name>THO</name>
+			  <time>30000</time>
+			</score>
+		
+			<score>
+			  <name>PET</name>
+			  <time>30000</time>
+			</score>
+		
+			<score>
+			  <name>Txx</name>
+			  <time>40000</time>
+			</score>
+		
+			<score>
+			  <name>UUU</name>
+			  <time>50000</time>
+			</score>
+		
+			<score>
+			  <name>JOH</name>
+			  <time>60000</time>
+			</score>
+		
+			<score>
+			  <name>JOH</name>
+			  <time>70000</time>
+			</score>
+		
+	</scores>   
+</xmlData>

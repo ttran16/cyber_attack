@@ -46,8 +46,38 @@ Functions.prototype = {
 		}
 		return minute;
 		
-	}
+	},
+	loadHighScore: function()
+	{
+		
+		this.game.load.onLoadComplete.add(this.loadComplete, this);
+
+        this.game.load.text('DATA-highscore', this.game.game_config.highscore.get);
+		
+		this.game.load.start();
+	},
 	
+	loadComplete: function() {
+		var raw = this.game.cache.getText('DATA-highscore');
+		if(raw)
+		{
+			var lines = raw.split("\n");
+			var score_array = [];
+			for(var i=0; i< lines.length; i++)
+			{
+				var score = lines[i].split("|");
+				if(score.length > 1)
+				{
+					
+					var myobj = {};
+					myobj['name'] = score[0];
+					myobj['time'] = score[1];
+					score_array.push(myobj);
+				}
+			}
+			this.highScore = score_array;
+		}
+	}
 	
 };
 

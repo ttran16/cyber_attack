@@ -25,6 +25,7 @@
 </platform>
 	<preference name="orientation" value="landscape"/>
 	<preference name="AllowInlineMediaPlayback" value="true"/>  
+	<preference name="setMediaPlaybackRequiresUserGesture" value="false"/>
 	<preference name="exit-on-suspend" value="true" />
 	<preference name="SplashScreenDelay" value="10000" />
 

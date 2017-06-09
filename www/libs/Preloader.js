@@ -37,16 +37,24 @@ PhaserGame.Preloader.prototype = {
         this.load.text('TEXT-LevelQuestions4', 'data/questions4.xml');
 		
 		
+        this.game.load.text('Credits', 'data/EndCredits.txt');
+        this.game.load.image('BG-EndGame','assets/GFX/BG-EndGame.jpg');
+        this.game.load.image('IMG-CoastlineLogo','assets/GFX/IMG-CoastlineLogo.png');
 		
 		
         titleScreen = this.add.sprite(0, 0, 'BG-MainMenu');		
 		titleScreen.width=this.game.width;
 		titleScreen.height=this.game.height;
 		
-        this.prompter = this.add.text(this.world.centerX, this.world.centerY-100, 'Loading...', { font: "30pt Michroma", fill: "#00ff00"});
+        
+        this.prompter = this.add.text(this.world.centerX, this.world.centerY-100, 'LOADING...', { font: "30pt Michroma", fill: "#00ff00"});
         this.prompter.anchor.set(0.5);
 		
+		this.prompter.alpha=0;
+		this.texttween = this.game.add.tween(this.prompter).to( { alpha: 1 }, 1000, Phaser.Easing.Linear.None, true, 0, 0, false);
+        
 		
+		this.texttween.repeat(100,0);
 		
         console.log('preload');
 	},
@@ -64,9 +72,13 @@ PhaserGame.Preloader.prototype = {
 		
         this.mainMenuVideo = this.game.add.video('BG-MainMenuVideo');
         this.mainMenuVideo.addToWorld(0, 0, 0, 0, this.game.width/this.game.game_config.main_menu_bg_video.width, this.game.height/this.game.game_config.main_menu_bg_video.height);
-
+		
 		this.mainMenuVideo.alpha=0;
 		
+        titleScreen = this.add.sprite(0, 0, 'BG-MainMenu');		
+		titleScreen.width=this.game.width;
+		titleScreen.height=this.game.height;
+
         this.game.music = this.add.audio('MUSIC-Intro');
         this.game.music.play();
 		
@@ -105,9 +117,12 @@ PhaserGame.Preloader.prototype = {
 		{
 			if(this.game.music.isPlaying)
 			{
+				this.texttween.pause();
+				this.prompter.alpha=0;
 				this.ready=true;
 				// Give it one more second
 				this.game.time.events.add(500, this.loadComplete, this);
+				//this.loadComplete();
 			}
 			else if(this.shouldbeplaying)
 			{
