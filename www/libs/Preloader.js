@@ -6,7 +6,6 @@ PhaserGame.Preloader = function (game) {
     this.ready = false;
 	
 	game.Functions = new Functions(game);
-	
 };
 
 
@@ -17,6 +16,8 @@ PhaserGame.Preloader.prototype = {
 		//	Here we load the rest of the assets our game needs.
 		//	As this is just a Project Template I've not provided these assets, swap them for your own.
 		this.game.Director.Init();
+		
+	this.game.add.plugin(PhaserInput.Plugin);
 		this.load.video('BG-TitleVideo','assets/VIDEO/Intro.mp4');
         this.load.image('BG-Black','assets/GFX/BG-Black.jpg');
         

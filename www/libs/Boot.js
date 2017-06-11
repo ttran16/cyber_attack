@@ -40,12 +40,14 @@ PhaserGame.Boot.prototype = {
         this.load.image('preloaderForeground', 'assets/GFX/BG-Loading.png');
         this.load.image('preloaderProgress', 'assets/GFX/BG-Loading-Progress.png');
 		
-        this.Michroma_preloader = this.add.text(0, 0, '', { font: "40pt Michroma", fill: "#000000"});
     },
 
     create: function () {
 		
+        this.Michroma_preloader = this.add.text(0, 0, '', { font: "32pt Michroma", fill: "#000000"});
 		
+        this.Droid_preloader = this.add.text(0, 0, '', { font: "32pt Droid", fill: "#000000"});
+
 		//make stage scale with view port
 		this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 		this.scale.minWidth = this.scale.gameWidth;

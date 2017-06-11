@@ -11,12 +11,14 @@ PhaserGame.HighScore.prototype = {
     },
 	create:function()
 	{
+		this.rowspacing = 40; //spacing between score rows 
+		
         HighScore = this.add.image(0, 0, 'BG-HighScore');
         HighScore.inputEnabled = true;
         HighScore.events.onInputDown.addOnce(this.endGame,this);
 		
 
-		this.style = { font: "32px Michroma", fill: "#ffffff", wordWrap: false, wordWrapWidth: HighScore.width, align: "center" };
+		this.style = { font: "48px Droid", fill: "#ffffff", wordWrap: false, wordWrapWidth: HighScore.width, align: "center" };
 
 		title = this.game.add.text(0, 0, "HIGH SCORE", this.style);
 		title.anchor.set(0.5);
@@ -38,60 +40,158 @@ PhaserGame.HighScore.prototype = {
 			errorText.y = 150;
 		}
 		
+
+		
+		
 	},
     
     displayHighScore: function () {
 		
-
+		var displayScore = false;
 
 
 
 		if(this.game.returnState.length==0)
 		{
 			//display current score only if there is no return state.
-			var time = this.game.Functions.formatTime(this.game.timetracker/1000);
-			this.mytime = this.game.add.text(0, 0, ' YOUR TIME: ' + time, this.style);
-			this.mytime.anchor.set(0.5,0.5);
-			this.mytime.fontSize='20px';
-			this.mytime.x = Math.floor(HighScore.x + HighScore.width / 2);
-			this.mytime.y = 150;
-			this.mytime.alpha=0;
-			this.texttween = this.game.add.tween(this.mytime).to( { alpha: 1 }, 1000, Phaser.Easing.Linear.None, true, 0, 0, false);
 			
-			this.texttween.repeat(1000,1000);
+			displayScore = true;
+			
 		}
+		else
+		{
+			this.game.timetracker=-1;
+			displayScore = false;
+			
+		
+		}
+	
+		this.game.Group_myScore = this.add.group();
+		this.game.Group_myScore.alpha=0;
+
+		this.texttween = this.game.add.tween(this.game.Group_myScore).to( { alpha: 1 }, 1000, Phaser.Easing.Linear.None, true, 0, 0, false);
+		
+		this.texttween.repeat(1000,1000);
 		
         var scores = this.game.Functions.highScore;
-		for(var i=0; i< Math.min(10,scores.length); i++)
+		var offset= 0 ; //this is used to shift the scores down if there is a new high score.
+		for(var i=0; i< Math.min(10-offset,scores.length); i++)
 		{
+			
 
-
+			
             var score = scores[i];
             
             // QUESTION DIFFICULTY LEVEL
             var name = score['name'];
-
+			console.log(name);
             var time = score['time'];
+			var y =150 + (this.rowspacing * (i + offset));
+			
+			
+			if((displayScore)&&(time > this.game.timetracker))
+			{
+				
+					
+				var txt = this.game.add.text(0, 0, i + 1 + offset + '. ', this.style);
+				txt.anchor.set(1.0,0);
+				txt.fill = '#00ff00';
+				txt.fontSize='20px';
+				txt.x = Math.floor(HighScore.x + HighScore.width / 2) -100;
+				txt.y = y;
+				
+				
+				displayScore=false;
+				this.nameInput = this.game.add.inputField(Math.floor(HighScore.x + HighScore.width / 2) - 100, y, {
+					font: '20px Droid',
+					fill: '#00ff00',
+					cursorColor: '#00ff00',
+					backgroundColor: 'transparent',
+					borderColor: 'transparent',
+					fontWeight: 'bold',
+					width: 100,
+					padding: 0,
+					height:30,
+					max:3
+				});
+				
+				
+				this.nameInput.startFocus();
+				
+					
+				var txt = this.game.add.text(0, 0, this.game.Functions.formatTime(this.game.timetracker/1000), this.style);
+				txt.anchor.set(1.0,0);
+				txt.fill = '#00ff00';
+				txt.fontSize='20px';
+				txt.x = Math.floor(HighScore.x + HighScore.width / 2) + 100;
+				txt.y = y;
 
+				
+				
+				this.game.Group_myScore.add(txt);
+				
+				
+				txt = this.game.add.text(0, 0, ' - YOUR SCORE', this.style);
+				txt.anchor.set(0,0);
+				txt.fill = '#00ff00';
+				txt.fontSize='20px';
+				txt.x = Math.floor(HighScore.x + HighScore.width / 2) + 100;
+				txt.y = y;
+
+				this.game.Group_myScore.add(txt);
+				
+				
+				
+				
+				offset++;
+				y =150 + (this.rowspacing * (i + offset));
+				
+			}
+			
+			
+					
+			var txt = this.game.add.text(0, 0, i + 1 + offset + '. ', this.style);
+			txt.anchor.set(1.0,0);
+			txt.fill = '#ffffff';
+			txt.fontSize='20px';
+			txt.x = Math.floor(HighScore.x + HighScore.width / 2) -100;
+			txt.y = y;
+			
 			time = this.game.Functions.formatTime(time/1000);
 			
-			var y =200 + (40 * i);
+			
 
 			var txtname = this.game.add.text(0, 0, name, this.style);
-			txtname.anchor.set(0.0,0.5);
+			txtname.anchor.set(0.0,0);
 			txtname.fontSize='20px';
 			txtname.x = Math.floor(HighScore.x + HighScore.width / 2) - 100;
 			txtname.y = y;
 
 			var txttime = this.game.add.text(0, 0, time, this.style);
-			txttime.anchor.set(1.0,0.5);
+			txttime.anchor.set(1.0,0);
 			txttime.fontSize='20px';
 			txttime.x = Math.floor(HighScore.x + HighScore.width / 2) + 100;
 			txttime.y = y;
 
 		}
-
-		footer = this.game.add.text(0, 0, "Click/Tap to Continue", this.style);
+		
+		
+		if(displayScore && this.game.timetracker>0)
+		{
+			//if not high score, then display time at the bottom
+			var txt = this.game.add.text(0, 0, ' YOUR TIME: ' + this.game.Functions.formatTime(this.game.timetracker/1000), this.style);
+			txt.anchor.set(0.5,0.5);
+			txt.fontSize='20px';
+			txt.x = Math.floor(HighScore.x + HighScore.width / 2);
+			txt.y = 600;
+				
+			this.game.Group_myScore.add(txt);
+			
+			
+			
+		}
+		
+		footer = this.game.add.text(0, 0, "Tap to Continue", this.style);
 		footer.fontSize='16px';
 		footer.anchor.set(0.5);
 			
@@ -104,7 +204,34 @@ PhaserGame.HighScore.prototype = {
     },
 	update:function()
 	{
-		   
+		if(this.nameInput)
+		{
+			this.nameInput.update();
+			if(this.nameInput.value != this.nameInputValue)
+			{
+				this.nameInputValue = this.nameInput.value.toUpperCase();
+				this.nameInput.setText(this.nameInputValue);
+				this.nameInput.startFocus();
+			}
+
+
+			if((this.nameInput.alpha>0)&&(this.nameInputValue.length >=3))
+			{
+				this.nameInput.alpha=0;
+				this.game.Functions.saveHighScore(this.nameInputValue,this.game.timetracker);
+				
+				var txt = this.game.add.text(0, 0, this.nameInputValue, this.style);
+				txt.anchor.set(0,0);
+				txt.fill = '#00ff00';
+				txt.fontSize='20px';
+				txt.x = this.nameInput.x;
+				txt.y = this.nameInput.y;
+
+				this.game.Group_myScore.add(txt);
+				
+			}
+			   
+		}
 	},
     voiceStopped: function(){
 		this.game.music.volume=1;

@@ -47,10 +47,21 @@ Functions.prototype = {
 		return minute;
 		
 	},
+	saveHighScore: function(name,time)
+	{
+		
+		this.game.load.onLoadComplete.addOnce(this.loadHighScore, this);
+		var target = this.game.game_config.highscore.set;
+		target = target.replace('%%NAME%%',name);
+		target = target.replace('%%TIME%%',time);
+        this.game.load.text('DATA-highscoresave', target);
+		
+		this.game.load.start();
+	},
 	loadHighScore: function()
 	{
 		
-		this.game.load.onLoadComplete.add(this.loadComplete, this);
+		this.game.load.onLoadComplete.addOnce(this.loadComplete, this);
 
         this.game.load.text('DATA-highscore', this.game.game_config.highscore.get);
 		

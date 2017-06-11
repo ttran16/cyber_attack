@@ -14,6 +14,8 @@ body {margin:0px; padding:0px;}
 
 @font-face {	font-family: 'Michroma';	src: url('fonts/Michroma.ttf') format('truetype');}
 
+@font-face {	font-family: 'Droid';	src: url('fonts/DroidSansMono.ttf') format('truetype');}
+
 .
 loading {
 	-webkit-animation:spin 2s linear infinite;

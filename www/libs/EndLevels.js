@@ -14,6 +14,7 @@ PhaserGame.EndLevels.prototype = {
     },
     
     create: function () {
+		this.game.Functions.loadHighScore();
         levelSuccessScreen = this.add.image(0, 0, 'BG-EndLevels');
         levelSuccessScreen.inputEnabled = true;
         levelSuccessScreen.events.onInputDown.addOnce(this.endGame,this);
