@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="edu.coastline.cyberattack.english" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="edu.coastline.cyberattack.english" version="0.2.5" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Cyber Attack - English</name>
     <description>
         Cyber Security themed College Entrance Exam Preparation app - English Version
@@ -10,47 +10,13 @@
     <content src="index.html" />
     <access origin="*" />
 	
+	<plugin name="cordova-plugin-whitelist" version="1" />
 	<allow-intent href="http://*/*" />
 	<allow-intent href="https://*/*" />
 	<allow-intent href="tel:*" />
 	<allow-intent href="sms:*" />
 	<allow-intent href="mailto:*" />
 	<allow-intent href="geo:*" />
-
-	<platform name="ios">
-		<allow-intent href="itms:*" />
-		<allow-intent href="itms-apps:*" />
-	</platform>
-
-	<preference name="orientation" value="landscape"/>
-	<preference name="AllowInlineMediaPlayback" value="true"/>  
-	<preference name="setMediaPlaybackRequiresUserGesture" value="false"/>
-	<preference name="exit-on-suspend" value="true" />
-	<preference name="SplashScreenDelay" value="10000" />
-
-	<icon src="icon.png" />	
-	<splash src="splash.png" />
-	<platform name="android">
-		<allow-intent href="market:*" />
-		<icon src="res/icon/android/icon-36-ldpi.png" qualifier="ldpi" />
-		<icon src="res/icon/android/icon-48-mdpi.png" qualifier="mdpi" />
-		<icon src="res/icon/android/icon-72-hdpi.png" qualifier="hdpi" />
-		<icon src="res/icon/android/icon-96-xhdpi.png" qualifier="xhdpi" />
-		
-		<splash src="res/splash/android/splash-ldpi.png" qualifier="ldpi" />
-		<splash src="res/splash/android/splash-mdpi.png" qualifier="mdpi" />
-		<splash src="res/splash/android/splash-hdpi.png" qualifier="hdpi" />
-		<splash src="res/splash/android/splash-xhdpi.png" qualifier="xhdpi" />
-		<splash src="res/splash/android/splash-xxhdpi.png" qualifier="xxhdpi" />
-		<splash src="res/splash/android/splash-xxxhdpi.png" qualifier="xxxhdpi" />
-	</platform>
-	<allow-intent href="http://*/*" />
-	<allow-intent href="https://*/*" />
-	<allow-intent href="tel:*" />
-	<allow-intent href="sms:*" />
-	<allow-intent href="mailto:*" />
-	<allow-intent href="geo:*" />
-
 	<platform name="ios">
 		<allow-intent href="itms:*" />
 		<allow-intent href="itms-apps:*" />
