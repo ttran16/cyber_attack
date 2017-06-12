@@ -11,16 +11,16 @@ PhaserGame.HighScore.prototype = {
     },
 	create:function()
 	{
-		this.rowspacing = 40; //spacing between score rows 
+		this.rowspacing = 45; //spacing between score rows 
 		
         HighScore = this.add.image(0, 0, 'BG-HighScore');
         HighScore.inputEnabled = true;
-        HighScore.events.onInputDown.addOnce(this.endGame,this);
 		
 
 		this.style = { font: "48px Droid", fill: "#ffffff", wordWrap: false, wordWrapWidth: HighScore.width, align: "center" };
 
 		title = this.game.add.text(0, 0, "HIGH SCORE", this.style);
+		title.font='Michroma';
 		title.anchor.set(0.5);
 			
 		title.x = Math.floor(HighScore.x + HighScore.width / 2);
@@ -60,7 +60,7 @@ PhaserGame.HighScore.prototype = {
 		}
 		else
 		{
-			this.game.timetracker=-1;
+			this.game.timetracker=0;
 			displayScore = false;
 			
 		
@@ -96,14 +96,14 @@ PhaserGame.HighScore.prototype = {
 				var txt = this.game.add.text(0, 0, i + 1 + offset + '. ', this.style);
 				txt.anchor.set(1.0,0);
 				txt.fill = '#00ff00';
-				txt.fontSize='20px';
+				txt.fontSize='30px';
 				txt.x = Math.floor(HighScore.x + HighScore.width / 2) -100;
 				txt.y = y;
 				
 				
 				displayScore=false;
 				this.nameInput = this.game.add.inputField(Math.floor(HighScore.x + HighScore.width / 2) - 100, y, {
-					font: '20px Droid',
+					font: '30px Droid',
 					fill: '#00ff00',
 					cursorColor: '#00ff00',
 					backgroundColor: 'transparent',
@@ -122,7 +122,7 @@ PhaserGame.HighScore.prototype = {
 				var txt = this.game.add.text(0, 0, this.game.Functions.formatTime(this.game.timetracker/1000), this.style);
 				txt.anchor.set(1.0,0);
 				txt.fill = '#00ff00';
-				txt.fontSize='20px';
+				txt.fontSize='30px';
 				txt.x = Math.floor(HighScore.x + HighScore.width / 2) + 100;
 				txt.y = y;
 
@@ -134,7 +134,7 @@ PhaserGame.HighScore.prototype = {
 				txt = this.game.add.text(0, 0, ' - YOUR SCORE', this.style);
 				txt.anchor.set(0,0);
 				txt.fill = '#00ff00';
-				txt.fontSize='20px';
+				txt.fontSize='30px';
 				txt.x = Math.floor(HighScore.x + HighScore.width / 2) + 100;
 				txt.y = y;
 
@@ -153,7 +153,7 @@ PhaserGame.HighScore.prototype = {
 			var txt = this.game.add.text(0, 0, i + 1 + offset + '. ', this.style);
 			txt.anchor.set(1.0,0);
 			txt.fill = '#ffffff';
-			txt.fontSize='20px';
+			txt.fontSize='30px';
 			txt.x = Math.floor(HighScore.x + HighScore.width / 2) -100;
 			txt.y = y;
 			
@@ -163,13 +163,13 @@ PhaserGame.HighScore.prototype = {
 
 			var txtname = this.game.add.text(0, 0, name, this.style);
 			txtname.anchor.set(0.0,0);
-			txtname.fontSize='20px';
+			txtname.fontSize='30px';
 			txtname.x = Math.floor(HighScore.x + HighScore.width / 2) - 100;
 			txtname.y = y;
 
 			var txttime = this.game.add.text(0, 0, time, this.style);
 			txttime.anchor.set(1.0,0);
-			txttime.fontSize='20px';
+			txttime.fontSize='30px';
 			txttime.x = Math.floor(HighScore.x + HighScore.width / 2) + 100;
 			txttime.y = y;
 
@@ -181,7 +181,7 @@ PhaserGame.HighScore.prototype = {
 			//if not high score, then display time at the bottom
 			var txt = this.game.add.text(0, 0, ' YOUR TIME: ' + this.game.Functions.formatTime(this.game.timetracker/1000), this.style);
 			txt.anchor.set(0.5,0.5);
-			txt.fontSize='20px';
+			txt.fontSize='30px';
 			txt.x = Math.floor(HighScore.x + HighScore.width / 2);
 			txt.y = 600;
 				
@@ -191,13 +191,6 @@ PhaserGame.HighScore.prototype = {
 			
 		}
 		
-		footer = this.game.add.text(0, 0, "Tap to Continue", this.style);
-		footer.fontSize='16px';
-		footer.anchor.set(0.5);
-			
-		footer.x = Math.floor(HighScore.x + HighScore.width / 2);
-		footer.y = 650;
-
 		
         
 
@@ -215,23 +208,52 @@ PhaserGame.HighScore.prototype = {
 			}
 
 
-			if((this.nameInput.alpha>0)&&(this.nameInputValue.length >=3))
+			if(this.nameInput.alpha>0)
 			{
-				this.nameInput.alpha=0;
-				this.game.Functions.saveHighScore(this.nameInputValue,this.game.timetracker);
+			
 				
-				var txt = this.game.add.text(0, 0, this.nameInputValue, this.style);
-				txt.anchor.set(0,0);
-				txt.fill = '#00ff00';
-				txt.fontSize='20px';
-				txt.x = this.nameInput.x;
-				txt.y = this.nameInput.y;
+				if(this.nameInputValue.length >=3)
+				{
+					this.nameInput.alpha=0;
+					this.game.Functions.saveHighScore(this.nameInputValue,this.game.timetracker);
+					
+					var txt = this.game.add.text(0, 0, this.nameInputValue, this.style);
+					txt.anchor.set(0,0);
+					txt.fill = '#00ff00';
+					txt.fontSize='30px';
+					txt.x = this.nameInput.x;
+					txt.y = this.nameInput.y;
 
-				this.game.Group_myScore.add(txt);
+					this.game.Group_myScore.add(txt);
+				}
+			}
+			else
+			{
+						
+				this.showFooter();
 				
 			}
+			
 			   
 		}
+		else
+		{
+				
+			this.showFooter();
+		}
+	},
+	showFooter: function(){
+		
+		HighScore.events.onInputDown.addOnce(this.endGame,this);HighScore.events.onInputDown.addOnce(this.endGame,this);
+			
+		footer = this.game.add.text(0, 0, "Tap to Continue", this.style);
+		footer.font = 'Michroma';
+		footer.fontSize='16px';
+		footer.anchor.set(0.5);
+			
+		footer.x = Math.floor(HighScore.x + HighScore.width / 2);
+		footer.y = 650;
+
 	},
     voiceStopped: function(){
 		this.game.music.volume=1;

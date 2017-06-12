@@ -105,13 +105,13 @@ PhaserGame.LevelPlay.prototype = {
 		this.game.TIMER_BG = this.game.add.sprite(this.game.width/2, 745, 'TIMER-BG');
 		this.game.TIMER_BG.anchor.set(0.5, 0.5);
 		
-		this.timerTextMinutes = this.add.text(this.game.width/2 - 10, 745, '00' , { font: "20pt Michroma", fill: "#00ff00", align: "left", wordWrap: true, wordWrapWidth: 460 });
+		this.timerTextMinutes = this.add.text(this.game.width/2 - 10, 745, '00' , { font: "20pt Droid", fill: "#00ff00", align: "left", wordWrap: true, wordWrapWidth: 460 });
         this.timerTextMinutes.anchor.set(1, 0.5);
 		
-		this.timerTextSeparator = this.add.text(this.game.width/2, 745, ':' , { font: "20pt Michroma", fill: "#00ff00", align: "left", wordWrap: true, wordWrapWidth: 460 });
+		this.timerTextSeparator = this.add.text(this.game.width/2, 745, ':' , { font: "20pt Droid", fill: "#00ff00", align: "left", wordWrap: true, wordWrapWidth: 460 });
         this.timerTextSeparator.anchor.set(0.5, 0.5);
 		
-		this.timerTextSeconds = this.add.text(this.game.width/2 + 10, 745, '00' , { font: "20pt Michroma", fill: "#00ff00", align: "left", wordWrap: true, wordWrapWidth: 460 });
+		this.timerTextSeconds = this.add.text(this.game.width/2 + 10, 745, '00' , { font: "20pt Droid", fill: "#00ff00", align: "left", wordWrap: true, wordWrapWidth: 460 });
         this.timerTextSeconds.anchor.set(0, 0.5);
 		
         this.game.ICON_Restore = this.game.add.sprite(950, 718, 'ICON-Restore-Off');
@@ -496,6 +496,7 @@ PhaserGame.LevelPlay.prototype = {
 			
 			if(isNaN(this.game.timetracker))
 			{
+				console.log('timetracker was undefined');
 				this.game.timetracker=0;
 			}
 			this.game.timetracker+=this.game.time.elapsedMS;
@@ -520,6 +521,9 @@ PhaserGame.LevelPlay.prototype = {
 			
 		}
 
+		this.timerTextSeconds.setText(this.game.Functions.getFormatedSeconds(this.game.timetracker /1000));
+		this.timerTextMinutes.setText(this.game.Functions.getFormatedMinutes(this.game.timetracker /1000));
+		
         // MONITOR THE MISSILEFIRE TIMER AND FIRE IF EXCEEDED
         if (this.game.PAUSED == false){
             if (this.game.time.now > this.game.DATA_MissileFire_Timer) {            

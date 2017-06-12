@@ -101,6 +101,7 @@ PhaserGame.MainMenu.prototype = {
     ,
 	
     startArcade: function () {
+		this.game.timetracker = 0;
         this.game.SETUP_GameLevel = 1;
         this.game.SETUP_GameStyle = 'Arcade';
 		mainMenuVideo.destroy();
