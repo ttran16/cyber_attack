@@ -331,13 +331,13 @@ PhaserGame.LevelPlay.prototype = {
     
     powerUp_Attack: function () {
         // TAKE THE HIGHEST POWER ATTACK HUB OFFLINE
-
-		this.game.AttackHubs[this.Hubs.strongestHub()].damage = 0;
-        this.Hubs.setDamage(this.Hubs.strongestHub(),0);
+		var atkhubIndex = this.Hubs.strongestHub();
+		this.game.AttackHubs[atkhubIndex].damage = 0;
+        this.Hubs.setDamage(atkhubIndex,0);
         
         // EXPLOSION ON ATTACKING HUB
 		
-		var atkhub = this.game.AttackHubs[this.Hubs.strongestHub()];
+		var atkhub = this.game.AttackHubs[atkhubIndex];
         
         this.game.GROUP_Explosion.alpha = 1;
         this.game.SPRITE_Explosion.reset(atkhub.x, atkhub.y);
