@@ -29,6 +29,8 @@ PhaserGame.LevelPlay.prototype = {
         soundEarnedPowerUp = this.add.audio('SOUND-EarnedPowerUp');
         sound5050 = this.add.audio('SOUND-5050');
         
+		
+		
 
         // SET THE GAME STATES
         this.game.PAUSED = false;
@@ -114,14 +116,21 @@ PhaserGame.LevelPlay.prototype = {
 		this.timerTextSeconds = this.add.text(this.game.width/2 + 10, 745, '00' , { font: "20pt Droid", fill: "#00ff00", align: "left", wordWrap: true, wordWrapWidth: 460 });
         this.timerTextSeconds.anchor.set(0, 0.5);
 		
+	
         this.game.ICON_Restore = this.game.add.sprite(950, 718, 'ICON-Restore-Off');
         this.game.ICON_Restore.inputEnabled = true;
+		this.ICON_Restore = this.add.text(950+50, 718, this.game.POWERUP_Restore , { font: "10pt Droid", fill: "#ffffff", backgroundColor:"#000000", align: "left", wordWrap: false});
+        this.ICON_Restore.anchor.set(1, 0);	
                 
         this.game.ICON_Attack = this.game.add.sprite(900, 718, 'ICON-Attack-Off');
         this.game.ICON_Attack.inputEnabled = true;
+		this.ICON_Attack = this.add.text(900+50, 718, this.game.POWERUP_Restore , { font: "10pt Droid", fill: "#ffffff", backgroundColor:"#000000", align: "left", wordWrap: false});
+        this.ICON_Attack.anchor.set(1, 0);	
         
         this.game.ICON_5050 = this.game.add.sprite(850, 718, 'ICON-5050-Off');
         this.game.ICON_5050.inputEnabled = true;
+		this.ICON_5050 = this.add.text(850+50, 718, this.game.POWERUP_Restore , { font: "10pt Droid", fill: "#ffffff", backgroundColor:"#000000", align: "left", wordWrap: false});
+        this.ICON_5050.anchor.set(1, 0);	
         
         this.game.ICON_Help = this.game.add.sprite(25, -718, 'ICON-Help');
         this.game.ICON_Help.inputEnabled = true;
@@ -148,6 +157,7 @@ PhaserGame.LevelPlay.prototype = {
             this.game.ICON_5050.input.enabled = false;
             this.game.ICON_5050.input.useHandCursor = false;
         }
+        this.ICON_5050.setText(this.game.POWERUP_5050);
         
         // RESTORE AVAILABLE DURING GAMEPLAY
         if (this.game.POWERUP_Restore >= 1 && this.game.STATE == 'PLAY'){
@@ -159,7 +169,8 @@ PhaserGame.LevelPlay.prototype = {
             this.game.ICON_Restore.input.enabled = false;
             this.game.ICON_Restore.input.useHandCursor = false;
         }
-        
+        this.ICON_Restore.setText(this.game.POWERUP_Restore);
+		
         // ATTACK AVAILABLE DURING GAMEPLAY
         if (this.game.POWERUP_Attack >= 1 && this.game.STATE == 'PLAY'){
             this.game.ICON_Attack.loadTexture('ICON-Attack-On',0);
@@ -170,7 +181,7 @@ PhaserGame.LevelPlay.prototype = {
             this.game.ICON_Attack.input.enabled = false;
             this.game.ICON_Attack.input.useHandCursor = false;
         }
-        
+        this.ICON_Attack.setText(this.game.POWERUP_Attack);
         
         
         // HELP IS ALWAYS AVAILABLE
@@ -552,22 +563,6 @@ PhaserGame.LevelPlay.prototype = {
     },
     
     render: function () {
-        //this.game.debug.text("DMG: " + this.game.DATA_MissileFire_Damage, 32, 32);
-        //this.game.debug.text("Question: " + this.game.CurrentQuestion, 32, 52);
-        //this.game.debug.text("Correct Answer: " + this.game.CurrentCorrectAnswer, 32, 72);
-        //this.game.debug.text("Y: " + this.game.textY, 32, 92);
-        
-        //this.game.debug.text("Curr Q: " + this.game.DATA_QuestionIndex, 32, 72);
-        //this.game.debug.text("GameTime: " + this.game.time.now, 32, 92);
-        //this.game.debug.text("PUATK: " + this.game.POWERUP_Attack, 32, 112);
-        //this.game.debug.text("STATE: " + this.game.STATE, 32, 132);
-        //this.game.debug.text("DMG: " + this.game.DATA_PlayerHub_CurDamage, 32, 152);
-        //this.game.debug.text("Difficulty: " + this.game.QuestionLevel, 32, 112);
-        //this.game.debug.text("Diff 1: " + this.game.QuestionListLevel1, 32, 132);
-        //this.game.debug.text("Diff 2: " + this.game.QuestionListLevel2, 32, 152);
-        //this.game.debug.text("Diff 3: " + this.game.QuestionListLevel3, 32, 172);
-
-        
     }
     
 };
