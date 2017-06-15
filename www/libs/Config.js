@@ -27,8 +27,8 @@ Config = function () {
 	this['intro_video']['height'] = 480;
 	
 	this['main_menu_bg_video'] = {};
-	this['main_menu_bg_video']['width'] = 1024;
-	this['main_menu_bg_video']['height'] = 768;
+	this['main_menu_bg_video']['width'] = 640;
+	this['main_menu_bg_video']['height'] = 480;
 	
 	this['highscore'] = {};
 	this['highscore']['get'] = 'https://apps.coastline.edu/games/Cyberwar-English/data/highscore.txt';

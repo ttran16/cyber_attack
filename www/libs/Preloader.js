@@ -48,9 +48,9 @@ PhaserGame.Preloader.prototype = {
 		titleScreen.height=this.game.height;
 		
         
-        this.prompter = this.add.text(this.world.centerX, this.world.centerY-100, 'LOADING...', { font: "30pt Michroma", fill: "#00ff00"});
+        this.prompter = this.add.text(this.world.centerX, this.world.centerY-100, 'LOADING...', { font: "30pt Arial", fill: "#00ff00"});
         this.prompter.anchor.set(0.5);
-		
+		this.prompter.setText('LOADING...');
 		this.prompter.alpha=0;
 		this.texttween = this.game.add.tween(this.prompter).to( { alpha: 1 }, 1000, Phaser.Easing.Linear.None, true, 0, 0, false);
         

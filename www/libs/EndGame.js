@@ -22,7 +22,7 @@ PhaserGame.EndGame.prototype = {
         var credits = this.game.cache.getText('Credits');
         
         this.text = this.add.text(this.world.centerX, this.world.centerY+360, credits, { font: "25pt Michroma", fill: "#ffffff", stroke: "#000000", strokeThickness: 2, align: "center", wordWrap: true, wordWrapWidth: 800 });
-        this.text.setShadow(3, 3, 'rgba(0,0,0,1)', 7);
+        //this.text.setShadow(3, 3, 'rgba(0,0,0,1)', 7);  //causes delay in firefox
         this.text.anchor.set(0.5, 0);
         
         // Scroll Credits for 60 Seconds
