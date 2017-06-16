@@ -21,6 +21,7 @@ PhaserGame.MainMenu.prototype = {
         mainMenuVideo = this.game.add.video('BG-MainMenuVideo');
         mainMenuVideo.addToWorld(0, 0, 0, 0, this.game.width/this.game.game_config.main_menu_bg_video.width, this.game.height/this.game.game_config.main_menu_bg_video.height);
         mainMenuVideo.unlock();
+		mainMenuVideo.play(true);
 		
 		this.game.music.resume();
 		
