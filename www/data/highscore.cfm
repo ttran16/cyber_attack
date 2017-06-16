@@ -57,9 +57,6 @@
 	<cffile action = "append" file = "#ExpandPath( "./" )#highscore.txt" output = "#LEFT(nametemp,3)#|#timetemp#" addnewline="yes">	
 </cfoutput>
  
-<!--- Write data to highscore XML file--->  
-<cffile action="write" file="#ExpandPath( "./" )#highscore.xml" output=#toString(xmlPacket)#>
-
                 
 
 

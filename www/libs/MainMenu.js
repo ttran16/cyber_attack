@@ -12,7 +12,6 @@ PhaserGame.MainMenu.prototype = {
     },
     
     create: function () {
-		this.game.Functions.loadHighScore();
         this.game.returnState='';
 		this.buttonCount = 0;
 		

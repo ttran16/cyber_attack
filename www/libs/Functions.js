@@ -50,22 +50,39 @@ Functions.prototype = {
 	saveHighScore: function(name,time)
 	{
 		
-		this.game.load.onLoadComplete.addOnce(this.loadHighScore, this);
-		var target = this.game.game_config.highscore.set;
-		target = target.replace('%%NAME%%',name);
-		target = target.replace('%%TIME%%',time);
-        this.game.load.text('DATA-highscoresave', target);
 		
-		this.game.load.start();
+		var target = this.game.game_config.highscore.set;
+		if((target) && (target !=''))
+		{
+			this.game.load.onLoadComplete.addOnce(this.loadHighScore, this);
+			target = target.replace('%%NAME%%',name);
+			target = target.replace('%%TIME%%',time);
+			this.game.load.text('DATA-highscoresave', target);
+			this.game.load.start();
+		}
+		
 	},
 	loadHighScore: function()
 	{
+		var target = this.game.game_config.highscore.get;
 		
-		this.game.load.onLoadComplete.addOnce(this.loadComplete, this);
+		console.log('target is ' + target);
+		if((target) && (target !=''))
+		{
+			
+		}
+		else if(!this.highScore){
+			target='data/highscore-default.txt';
+		}		
+		if(target)
+		{
+			this.game.load.onLoadComplete.addOnce(this.loadComplete, this);
 
-        this.game.load.text('DATA-highscore', this.game.game_config.highscore.get);
+			this.game.load.text('DATA-highscore', target);
+			
+			this.game.load.start();
+		}
 		
-		this.game.load.start();
 	},
 	
 	loadComplete: function() {

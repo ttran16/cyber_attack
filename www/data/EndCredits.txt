@@ -1,37 +1,47 @@
 CYBER  ATTACK
 
 CoastTraining Development Team:
-    Dave Thompson
-    Robert Dixon
-    Toan Tran
+Dave Thompson
+Robert Dixon
+Toan Tran
 
 Project Management:
-    Judy Garvey
-    Dave Thompson
+Judy Garvey
+Dave Thompson
 
 Programming and Design:
-    Dave Thompson
-    Toan Tran
+Dave Thompson
+Toan Tran
     
 Custom Art and Graphics:
-    Robert Dixon
+Robert Dixon
 
-Stock Art and Graphics:
-    ShutterStock
-    wiki.openttd.org
-
-Music Tracks:
-    dl-sounds.com
+Casting and Talent Directing:
+Marie Hulett
 
 Subject Matter Experts:
-    Danny Pittaway
-    Daniel Oase
-    Scott Davis
-    Michael Warner
+Danny Pittaway
+Daniel Oase
+Scott Davis
+Michael Warner
 
 Instructional Design:
-    Meg Yanalunas
-    Sylvia Amito'elau
+Meg Yanalunas
+Sylvia Amito'elau
+
+Content Development:
+Wendy Sacket
+
+Quality Control:
+Marie Hulett
+Wendy Sacket
+
+Stock Art and Graphics:
+ShutterStock
+wiki.openttd.org
+
+Music Tracks:
+dl-sounds.com
 
 Funding:
-    Orange County Career Pathways Project
+Orange County Career Pathways Project

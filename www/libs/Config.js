@@ -33,6 +33,6 @@ Config = function () {
 	this['highscore'] = {};
 	this['highscore']['get'] = 'https://apps.coastline.edu/games/Cyberwar-English/data/highscore.txt';
 	this['highscore']['set'] = 'https://apps.coastline.edu/games/Cyberwar-English/data/highscore.cfm?name=%%NAME%%&time=%%TIME%%';
-	
+
 	
 };

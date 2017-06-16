@@ -91,7 +91,13 @@ PhaserGame.HighScore.prototype = {
 			
 			if((displayScore)&&(time > this.game.timetracker))
 			{
+				//if displaying score and the user's current time is less than the score's time.
 				
+				
+				this.myscoreobj = {};
+				this.myscoreobj['name'] = '';
+				this.myscoreobj['time'] = this.game.timetracker;
+				this.myscoreobj['index'] = i;
 					
 				var txt = this.game.add.text(0, 0, i + 1 + offset + '. ', this.style);
 				txt.anchor.set(1.0,0);
@@ -115,7 +121,7 @@ PhaserGame.HighScore.prototype = {
 					max:3
 				});
 				
-				
+				this.nameInput.alpha=1;
 				this.nameInput.startFocus();
 				
 					
@@ -214,6 +220,13 @@ PhaserGame.HighScore.prototype = {
 				
 				if(this.nameInputValue.length >=3)
 				{
+					if(this.myscoreobj && this.game.Functions.highScore)
+					{
+						this.myscoreobj['name'] = this.nameInputValue;
+						this.game.Functions.highScore.splice(this.myscoreobj['index'],0,this.myscoreobj);
+						
+					}
+					
 					this.nameInput.alpha=0;
 					this.game.Functions.saveHighScore(this.nameInputValue,this.game.timetracker);
 					
@@ -260,6 +273,8 @@ PhaserGame.HighScore.prototype = {
 	},
     
     endGame: function () {
+		this.nameInput = null;
+		this.nameInputValue = '';
 		if(this.game.returnState.length)
 			this.game.state.start(this.game.returnState,true,false);
 		else

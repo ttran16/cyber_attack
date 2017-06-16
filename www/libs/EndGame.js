@@ -52,8 +52,9 @@ PhaserGame.EndGame.prototype = {
 		if(this.game.returnState.length)
 			this.game.state.start(this.game.returnState,true,false);
 		else{
-			this.game.destroy();
-			window.location.reload();
+			//this.game.destroy();
+			//window.location.reload();
+			this.game.state.start('MainMenu',true,false);
 		}
     }
     
