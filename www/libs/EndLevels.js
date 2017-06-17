@@ -46,7 +46,16 @@ PhaserGame.EndLevels.prototype = {
     endGame: function () {
         // this.game.SETUP_GameStyle = 'Arcade';
 		this.game.Director.stopTalking();
-        this.game.state.start('HighScore',true,false);
+		
+		if(this.game.Functions.highScore)
+		{
+			this.game.state.start('HighScore',true,false);
+		}
+		else
+		{
+			this.game.state.start('EndGame',true,false);
+			
+		}
     }
     
 }

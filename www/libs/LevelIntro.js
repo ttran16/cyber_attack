@@ -19,6 +19,7 @@ PhaserGame.LevelIntro.prototype = {
 		
         levelIntroScreen.inputEnabled = true;
         levelIntroScreen.events.onInputDown.addOnce(this.levelPlay,this);
+		this.game.music.volume = 0.1;
         this.game.Director.say('level' + this.game.SETUP_GameLevel + 'scenario',1,this.voiceStopped);
 		
         

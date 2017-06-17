@@ -51,37 +51,49 @@ Functions.prototype = {
 	{
 		
 		
-		var target = this.game.game_config.highscore.set;
-		if((target) && (target !=''))
+		var savetarget;
+		savetarget = this.game.game_config.highscore.set;
+		if((savetarget) && (savetarget !=''))
 		{
 			this.game.load.onLoadComplete.addOnce(this.loadHighScore, this);
-			target = target.replace('%%NAME%%',name);
-			target = target.replace('%%TIME%%',time);
-			this.game.load.text('DATA-highscoresave', target);
+			savetarget = savetarget.replace('%%NAME%%',name);
+			savetarget = savetarget.replace('%%TIME%%',time);
+			this.game.load.text('DATA-highscoresave', savetarget);
 			this.game.load.start();
 		}
 		
 	},
 	loadHighScore: function()
 	{
-		var target = this.game.game_config.highscore.get;
-		
-		console.log('target is ' + target);
-		if((target) && (target !=''))
+		if(this.game.game_config.highscore.show)
+		var loadtarget;
+		loadtarget = this.game.game_config.highscore.get;
+		console.log(this.game.game_config.highscore.get);
+		console.log(loadtarget);
+		console.log('loadtarget is ' + loadtarget);
+
+		if((loadtarget) && (loadtarget !=''))
 		{
 			
+			loadtarget = loadtarget.replace('%%RND%%',Math.random());
 		}
-		else if(!this.highScore){
-			target='data/highscore-default.txt';
-		}		
-		if(target)
+		else if((loadtarget=='local')&&(!this.highScore)){
+			console.log('getting default scores');
+			loadtarget='data/highscore-default.txt';
+		}
+		if(loadtarget)
 		{
 			this.game.load.onLoadComplete.addOnce(this.loadComplete, this);
 
-			this.game.load.text('DATA-highscore', target);
+			this.game.load.text('DATA-highscore', loadtarget);
 			
 			this.game.load.start();
 		}
+		else
+		{
+			console.log('no score to get, disabling');
+		}	
+		
 		
 	},
 	

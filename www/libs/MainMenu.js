@@ -37,9 +37,11 @@ PhaserGame.MainMenu.prototype = {
         // Button - Instructions
 		this.addButton('Instructions', this.startInstructions);
         
-        // Button - High Score
-		this.addButton('High Score', this.startHighScore);
-		
+		if(this.game.Functions.highScore)
+		{
+			// Button - High Score
+			this.addButton('High Score', this.startHighScore);
+		}
         // Button - Credits
 		this.addButton('Credits', this.startCredit);
 		
