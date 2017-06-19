@@ -23,7 +23,7 @@ PhaserGame.Preloader.prototype = {
         this.load.image('BG-Black','assets/GFX/BG-Black.jpg');
         
 		
-		this.load.video('BG-MainMenuVideo',[''assets/VIDEO/Main.mp4']);
+		this.load.video('BG-MainMenuVideo',['assets/VIDEO/Main.mp4']);
         this.load.image('BTN-Wide','assets/GFX/BTN-Wide.png');
         
         this.load.audio('MUSIC-Intro','assets/MUSIC/MUSIC-Intro.mp3');
