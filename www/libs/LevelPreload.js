@@ -89,6 +89,7 @@ PhaserGame.LevelPreload.prototype = {
         this.load.image('ICON-Restore-Off','assets/GFX/ICON-PowerUp-Off.png');
         this.load.image('ICON-Help','assets/GFX/ICON-Help.png');
         this.load.image('ICON-Debug','assets/GFX/ICON-Debug-On.png');
+        this.load.image('ICON-Exit','assets/GFX/ICON-Exit.png');
         
 		//timer bg
         this.load.image('TIMER-BG','assets/GFX/TimerBG.png');
@@ -121,14 +122,6 @@ PhaserGame.LevelPreload.prototype = {
         //Load Audio
         this.load.audio('SOUND-Missile','assets/SFX/SOUND-Missile.mp3');
         this.load.audio('SOUND-MissileHit','assets/SFX/SOUND-MissileHit.mp3');
-        this.load.audio('SOUND-Correct','assets/SFX/SOUND-Correct.mp3');
-        this.load.audio('SOUND-Incorrect','assets/SFX/SOUND-Incorrect.mp3');
-        this.load.audio('SOUND-AttackHubPowerUp','assets/SFX/SOUND-AttackHubPowerUp.mp3');
-        this.load.audio('SOUND-AttackHubPowerDown','assets/SFX/SOUND-AttackHubPowerDown.mp3');
-        this.load.audio('SOUND-AttackHubHit','assets/SFX/SOUND-AttackHubHit.mp3');
-        this.load.audio('SOUND-PowerUp','assets/SFX/SOUND-PowerUp.mp3');
-        this.load.audio('SOUND-EarnedPowerUp','assets/SFX/SOUND-EarnedPowerUp.mp3');
-        this.load.audio('SOUND-5050','assets/SFX/SOUND-5050.mp3');
         this.load.audio('MUSIC-Level1','assets/MUSIC/MUSIC-Level1.mp3');
         this.load.audio('MUSIC-LevelIntro','assets/MUSIC/MUSIC-LevelIntro.mp3');
         this.load.audio('VOICE-SCENARIO','assets/VOICE/LEVEL' + this.game.SETUP_GameLevel + 'SCENARIO.mp3');

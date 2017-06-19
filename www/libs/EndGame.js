@@ -54,6 +54,7 @@ PhaserGame.EndGame.prototype = {
 		else{
 			//this.game.destroy();
 			//window.location.reload();
+			this.game.music.stop();
 			this.game.state.start('MainMenu',true,false);
 		}
     }

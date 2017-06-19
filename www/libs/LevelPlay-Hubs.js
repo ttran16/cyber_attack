@@ -67,6 +67,9 @@ Hubs.prototype = {
         this.LevelPlay.game.GROUP_AttackHubHighlights = this.LevelPlay.add.group();
         this.LevelPlay.game.GROUP_AttackHubs = this.LevelPlay.add.group();  
 		console.log("hub count is" + this.LevelPlay.game.AttackHubs.length);
+		this.hubAlive = this.LevelPlay.game.AttackHubs.length;
+		
+		
 		for (var i = 0; i < this.LevelPlay.game.AttackHubs.length; i++) { 
 			//load attack hub at full health
 			var AttackHubSprite = this.LevelPlay.add.sprite(
@@ -444,22 +447,21 @@ Hubs.prototype = {
 			
 		this.LevelPlay.game.AttackHubs[HUB].damage=DMG;
         // ARE ALL HUBS DAMAGE BELOW ZERO?
-        var hubAlive = 0;
+        this.hubAlive = 0;
 		for(var i = 0; i < this.LevelPlay.game.AttackHubs.length; i++)
 		{
 			if(this.LevelPlay.game.AttackHubs[i].damage > 0)
 			{
-				hubAlive++;
-				break;//don't really need to know exact number, as long as more than 1.
+				this.hubAlive++;
+				//break;//don't really need to know exact number, as long as more than 1.
 			}
 			
 		}
-        // YES - ALL HUBS VERIFIED OFFLINE - GAME WON!
-		
-        if (hubAlive <= 0) {
-            this.LevelPlay.levelSuccess();
+		console.log(this.hubAlive);
+        if (this.hubAlive <= 0) {
+			this.LevelPlay.game.Director.setCallback(this.LevelPlay.levelSuccess);
+            //this.LevelPlay.levelSuccess();
         };
-        
     },
 	
     weakestHub: function () {
@@ -494,26 +496,26 @@ Hubs.prototype = {
     },
     
     
-    hubDestroyed: function (VAR1) {//TODO: need to refactor this one
-        
-        if (VAR1 == 0 && this.LevelPlay.game.HubDestroyed0 == 0) {
+    hubDestroyed: function (hubDestroyedNumber) {//TODO: need to refactor this one
+        //this is to prevent powerup on towers that have already been destroyed.
+        if (hubDestroyedNumber == 0 && this.LevelPlay.game.HubDestroyed0 == 0) {
             this.LevelPlay.game.HubDestroyed0 = 1;
-            this.LevelPlay.powerUpChance();
+            return this.LevelPlay.powerUpChance();
         }
         
-        if (VAR1 == 1 && this.LevelPlay.game.HubDestroyed1 == 0) {
+        if (hubDestroyedNumber == 1 && this.LevelPlay.game.HubDestroyed1 == 0) {
             this.LevelPlay.game.HubDestroyed1 = 1;
-            this.LevelPlay.powerUpChance();
+            return this.LevelPlay.powerUpChance();
         }
         
-        if (VAR1 == 2 && this.LevelPlay.game.HubDestroyed2 == 0) {
+        if (hubDestroyedNumber == 2 && this.LevelPlay.game.HubDestroyed2 == 0) {
             this.LevelPlay.game.HubDestroyed2 = 1;
-            this.LevelPlay.powerUpChance();
+            return this.LevelPlay.powerUpChance();
         }
         
-        if (VAR1 == 3 && this.LevelPlay.game.HubDestroyed3 == 0) {
+        if (hubDestroyedNumber == 3 && this.LevelPlay.game.HubDestroyed3 == 0) {
             this.LevelPlay.game.HubDestroyed3 = 1;
-            this.LevelPlay.powerUpChance();
+            return this.LevelPlay.powerUpChance();
         }
     }
     

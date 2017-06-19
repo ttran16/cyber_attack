@@ -61,16 +61,30 @@ Director.prototype = {
         this.game.load.audio('DIRECTOR-level4success','assets/VOICE/LEVEL4SUCCESS.mp3');
         
 		//bonus
-		
 		this.game.load.audio('DIRECTOR-bonusnicejob','assets/VOICE/Bonus-NiceJob.mp3');
         this.game.load.audio('DIRECTOR-bonus5050','assets/VOICE/Bonus-5050.mp3');
-        
 		this.game.load.audio('DIRECTOR-bonusattack','assets/VOICE/Bonus-Attack.mp3');
-        
 		this.game.load.audio('DIRECTOR-bonuspowerup','assets/VOICE/Bonus-PowerUp.mp3');
         
+		//kabang
+		this.game.load.audio('DIRECTOR-AttackHubHit','assets/SFX/SOUND-AttackHubHit.mp3');
+        
+		//kaboom
+		this.game.load.audio('DIRECTOR-AttackHubPowerDown','assets/SFX/SOUND-AttackHubPowerDown.mp3');
+        
+        
+		//power up
+		this.game.load.audio('DIRECTOR-PowerUp','assets/SFX/SOUND-PowerUp.mp3');
+        
+        
+		//5050
+		this.game.load.audio('DIRECTOR-5050','assets/SFX/SOUND-5050.mp3');
+        
+        
+		//ding ding
+		this.game.load.audio('DIRECTOR-EarnedPowerUp','assets/SFX/SOUND-EarnedPowerUp.mp3');
 		
-        narration = null;
+        this.narration = null;
         this['queue'] = [];
 	},
 	
@@ -85,16 +99,24 @@ Director.prototype = {
 		
 		
 	},
+	setCallback:function(callback)
+	{
+		
+		console.log("Setting callback");
+		this['callback']=callback;
+
+	},
 	startTalking:function(callback)
 	{
-		this.callback=callback;
 		var myvoice=this['queue'].shift();
 
-		narration = this.game.add.audio(myvoice['sound'],myvoice['volume']);
+		this.narration = this.game.add.audio(myvoice['sound'],myvoice['volume']);
+		if (callback === 'function') { 
+			this.setCallback(callback);
+		}
+		this.narration.onStop.add(this.processqueue, this);
+		this.narration.play();
 		
-		narration.play();
-		
-		narration.onStop.add(this.processqueue, this);
 	},
 	
 	processqueue: function()
@@ -104,6 +126,7 @@ Director.prototype = {
 			this.startTalking();
 		}
 		else if (typeof this.callback === 'function') { 
+			console.log("Director finishes speaking.  Invoking callback");
 			this.callback();
 		}
 		
@@ -158,20 +181,31 @@ Director.prototype = {
 	emptyqueue: function()
 	{
 		this['queue']=[];
+		this['callback']=null;
 	},
-	stopTalking:function()
+	stopTalking:function(invokeCallback)
 	{
-		this.emptyqueue();
-		try
+		if((invokeCallback)&&(typeof this.callback === 'function'))
 		{
-			narration.stop();
+			console.log("Director interrupted  .  Invoking callback");
+			this.callback();
+		
 			
 		}
-		catch(e)
+		this.emptyqueue();
+		if(this.narration)
 		{
-			//ignore
+			try
+			{
+				this.narration.stop();
+				
+			}
+			catch(e)
+			{
+				console.log(e);
+				//ignore
+			}
 		}
-		
 	}
 };
 

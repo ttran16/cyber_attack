@@ -186,10 +186,6 @@ Questions.prototype = {
         // IS ANSWER CORRECT OR INCORRECT
         if (answer == this.LevelPlay.game.CurrentCorrectAnswer) {
             
-            // PLAY CORRECT ANSWER SOUND EFFECT
-            //this.LevelPlay.sound.play('SOUND-Correct', 0.5, false);
-			this.LevelPlay.game.Director.say('correct',1);
-            //soundCorrect.play();
             
             // EXPLOSION ON ATTACKING HUB
 			console.log(this.LevelPlay.game);
@@ -202,30 +198,34 @@ Questions.prototype = {
             
             // DAMAGE LOWERED (DAMAGED) TO ATTACK HUB
 			this.LevelPlay.game.AttackHubs[this.LevelPlay.game.DATA_QuestionHub].damage--;
-			//TODO:  identify this z
-			z = this.LevelPlay.game.AttackHubs[this.LevelPlay.game.DATA_QuestionHub].damage;
-			if (z == 0) {
+			var bonus=false;
+			var hubhealth = this.LevelPlay.game.AttackHubs[this.LevelPlay.game.DATA_QuestionHub].damage;
+			if (hubhealth == 0) {
                 // IF DAMAGE IS ZERO - HUB POWERED DOWN
                 // SHOW "POWERED DOWN" ANSWER RESPONSE
                 this.LevelPlay.game.SCREEN_CorrectAnswerText2.alpha = 1;
                 // PLAY "POWERED DOWN" SOUND
                 //this.LevelPlay.sound.play('SOUND-AttackHubPowerDown', 0.5, false);
-                soundAttackHubPowerDown.play();
+                //soundAttackHubPowerDown.play();
+				
+				this.LevelPlay.game.Director.say('AttackHubPowerDown',1);
                 // HUB DESTROYED
-                this.LevelPlay.Hubs.hubDestroyed(hubNumber);
+                bonus=this.LevelPlay.Hubs.hubDestroyed(hubNumber);
             } else {
                 // HUB DAMAGED BUT STILL ACTIVE
                 // SHOW "CORRECT ANSWER" RESPONSE
                 this.LevelPlay.game.SCREEN_CorrectAnswerText.alpha = 1;
                 //this.LevelPlay.sound.play('SOUND-AttackHubHit', 0.5, false);
-                soundAttackHubHit.play();
+                //soundAttackHubHit.play();
+				this.LevelPlay.game.Director.say('AttackHubHit',1);
             }
-            
+            if((!bonus)&&(this.hubAlive>0))
+			this.LevelPlay.game.Director.enqueue('correct',1);
             // FADE OUT ANSWER RESPONSES
             this.LevelPlay.game.add.tween(this.LevelPlay.game.GROUP_AnswerResponse).to( { alpha: 0 }, 2250, Phaser.Easing.Linear.None, true, 0, 0, false);
                                     
             // SEND DAMAGE TO THE HUB (SEE SETDAMAGE)
-            this.LevelPlay.Hubs.setDamage(this.LevelPlay.game.DATA_QuestionHub, z);
+            this.LevelPlay.Hubs.setDamage(this.LevelPlay.game.DATA_QuestionHub, hubhealth);
             
             
             // REMOVE QUESTION FROM QUESTIONLIST

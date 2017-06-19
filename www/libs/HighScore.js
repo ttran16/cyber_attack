@@ -189,7 +189,7 @@ PhaserGame.HighScore.prototype = {
 			txt.anchor.set(0.5,0.5);
 			txt.fontSize='30px';
 			txt.x = Math.floor(HighScore.x + HighScore.width / 2);
-			txt.y = 600;
+			txt.y = 650;
 				
 			this.game.Group_myScore.add(txt);
 			
@@ -257,7 +257,7 @@ PhaserGame.HighScore.prototype = {
 	},
 	showFooter: function(){
 		
-		HighScore.events.onInputDown.addOnce(this.endGame,this);HighScore.events.onInputDown.addOnce(this.endGame,this);
+		HighScore.events.onInputDown.addOnce(this.endGame,this);
 			
 		footer = this.game.add.text(0, 0, "Tap to Continue", this.style);
 		footer.font = 'Michroma';

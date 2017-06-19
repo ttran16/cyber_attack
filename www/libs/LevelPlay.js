@@ -20,14 +20,6 @@ PhaserGame.LevelPlay.prototype = {
         soundSelect = this.add.audio('SOUND-Select');
         soundMissile = this.add.audio('SOUND-Missile');
         soundMissileHit = this.add.audio('SOUND-MissileHit');
-        soundCorrect = this.add.audio('SOUND-Correct');
-        soundIncorrect = this.add.audio('SOUND-Incorrect');
-        soundAttackHubHit = this.add.audio('SOUND-AttackHubHit');
-        soundAttackHubPowerUp = this.add.audio('SOUND-AttackHubPowerUp');
-        soundAttackHubPowerDown = this.add.audio('SOUND-AttackHubPowerDown');
-        soundPowerUp = this.add.audio('SOUND-PowerUp');
-        soundEarnedPowerUp = this.add.audio('SOUND-EarnedPowerUp');
-        sound5050 = this.add.audio('SOUND-5050');
         
 		
 		
@@ -138,6 +130,11 @@ PhaserGame.LevelPlay.prototype = {
         this.game.ICON_Debug = this.game.add.sprite(75, -718, 'ICON-Debug');
         this.game.ICON_Debug.inputEnabled = true;
         
+        this.game.ICON_Exit = this.game.add.sprite(this.game.width/2, 0, 'ICON-Exit');
+		this.game.ICON_Exit.anchor.set(0.5, 0);	
+        this.game.ICON_Exit.inputEnabled = true;
+        this.game.ICON_Exit.input.useHandCursor = true;
+		
         this.refresh_UI();
         this.activate_UI();
     },
@@ -194,6 +191,7 @@ PhaserGame.LevelPlay.prototype = {
      
     activate_UI: function () {
         // UI Actions - Mouse Down
+        this.game.ICON_Exit.events.onInputDown.add( function() { this.exitToMenu(); }, this );
         this.game.ICON_Restore.events.onInputDown.add( function() { this.powerUp_Restore(); }, this );
         this.game.ICON_Attack.events.onInputDown.add( function() { this.powerUp_Attack(); }, this );
         this.game.ICON_5050.events.onInputDown.add( function() { this.powerUp_5050(); }, this );
@@ -260,12 +258,13 @@ PhaserGame.LevelPlay.prototype = {
         var y = this.game.rnd.integerInRange(1, 3);
         if (this.game.PowerUpChances <= 1) {
             if (x == x ) {
-                this.powerUpEarned('Random')
+                this.powerUpEarned('Random');
+				return true;
             }
         }
     },
     
-    powerUpEarned: function (VAR1) {
+    powerUpEarned: function (type) {
         // PAUSE GAME STATE
 		this.game.ticking=false;
         this.game.PAUSED = true;
@@ -275,18 +274,19 @@ PhaserGame.LevelPlay.prototype = {
         this.game.SPRITE_BonusOverlay.inputEnabled = true;
         this.game.SPRITE_BonusPopup.inputEnabled = true;
         
-        if (VAR1 == 'Random') {
+        if (type == 'Random') {
             var x = this.game.rnd.integerInRange(1, 3);
             this.game.BonusEarnedDisplay = x;
             if (x == 1) { var bonus = '5050' };
             if (x == 2) { var bonus = 'Restore' };
             if (x == 3) { var bonus = 'Attack' };
         }else{
-            var bonus = VAR1;
+            var bonus = type;
         };
         
         if (bonus == '5050') {
 			this.game.Director.stopTalking();
+			this.game.Director.enqueue('EarnedPowerUp');	
 			this.game.Director.enqueue('bonusnicejob');			
 			this.game.Director.enqueue('bonus5050');
 			this.game.Director.startTalking();
@@ -296,6 +296,7 @@ PhaserGame.LevelPlay.prototype = {
         };
         if (bonus == 'Attack') {
 			this.game.Director.stopTalking();
+			this.game.Director.enqueue('EarnedPowerUp');
 			this.game.Director.enqueue('bonusnicejob');			
 			this.game.Director.enqueue('bonusattack');
 			this.game.Director.startTalking();
@@ -305,6 +306,7 @@ PhaserGame.LevelPlay.prototype = {
         };
         if (bonus == 'Restore') {
 			this.game.Director.stopTalking();
+			this.game.Director.enqueue('EarnedPowerUp');
 			this.game.Director.enqueue('bonusnicejob');			
 			this.game.Director.enqueue('bonuspowerup');
 			this.game.Director.startTalking();
@@ -312,11 +314,6 @@ PhaserGame.LevelPlay.prototype = {
             this.game.SPRITE_BonusPopup.loadTexture("BONUS-Restore");
             this.game.POWERUP_Restore++;
         };
-        
-        // PLAY "BONUS" SOUND
-        //this.sound.destroy();
-        //this.sound.play('SOUND-EarnedPowerUp', 0.8, false);
-        soundEarnedPowerUp.play();
         
         // SHOW POPUP THEN FADE OUT
         this.game.GROUP_Bonus.alpha=1;
@@ -330,7 +327,7 @@ PhaserGame.LevelPlay.prototype = {
         this.game.SPRITE_BonusOverlay.inputEnabled = false;
         this.game.SPRITE_BonusPopup.inputEnabled = false;
         
-		this.game.Director.stopTalking();
+		this.game.Director.stopTalking(this.Hubs.hubAlive<=0);
 		
         // RETURN TO PLAY
         this.game.add.tween(this.game.GROUP_Bonus).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, false);
@@ -342,27 +339,27 @@ PhaserGame.LevelPlay.prototype = {
     
     powerUp_Attack: function () {
         // TAKE THE HIGHEST POWER ATTACK HUB OFFLINE
-		var atkhubIndex = this.Hubs.strongestHub();
-		this.game.AttackHubs[atkhubIndex].damage = 0;
-        this.Hubs.setDamage(atkhubIndex,0);
-        
-        // EXPLOSION ON ATTACKING HUB
+		if(this.Hubs.hubAlive>0)
+		{  //only run this if there is a hub that is alive
+			var atkhubIndex = this.Hubs.strongestHub();
+			this.game.Director.say('AttackHubPowerDown',1);
+			this.game.AttackHubs[atkhubIndex].damage = 0;
+			this.Hubs.setDamage(atkhubIndex,0);
+			
+			// EXPLOSION ON ATTACKING HUB
+			
+			var atkhub = this.game.AttackHubs[atkhubIndex];
+			
+			this.game.GROUP_Explosion.alpha = 1;
+			this.game.SPRITE_Explosion.reset(atkhub.x, atkhub.y);
+			this.game.SPRITE_Explosion.animations.play('Explode', 15, false);
+			this.game.add.tween(this.game.GROUP_Explosion).to( { alpha: 0 }, 1000, Phaser.Easing.Linear.None, true, 0, 0, false);
+			
+			
+			this.game.POWERUP_Attack--;
+			this.refresh_UI();
+        }
 		
-		var atkhub = this.game.AttackHubs[atkhubIndex];
-        
-        this.game.GROUP_Explosion.alpha = 1;
-        this.game.SPRITE_Explosion.reset(atkhub.x, atkhub.y);
-        this.game.SPRITE_Explosion.animations.play('Explode', 15, false);
-        this.game.add.tween(this.game.GROUP_Explosion).to( { alpha: 0 }, 1000, Phaser.Easing.Linear.None, true, 0, 0, false);
-        
-        // PLAY "POWERED DOWN" SOUND
-        //this.sound.destroy();
-        //this.sound.play('SOUND-AttackHubPowerDown', 0.8, false);
-        soundAttackHubPowerDown.play();
-        
-        this.game.POWERUP_Attack--;
-        this.refresh_UI();
-        
     },
     
     powerUp_Restore: function () {
@@ -375,10 +372,9 @@ PhaserGame.LevelPlay.prototype = {
         // SEND DAMAGE (SEE PLAYERDAMAGE)
         this.Hubs.playerDamage('Down', restoreAmount);
         
-        // PLAY "POWERED Up" SOUND
-        //this.sound.play('SOUND-PowerUp', 0.5, false);
-        soundPowerUp.play();
         
+		this.game.Director.say('PowerUp',1);
+		
         // PLAY HUBREPAIR ANIMATION
         this.game.GROUP_HubRepair.alpha = 1;
         this.game.SPRITE_HubRepair.reset(this.game.SPRITE_PlayerHub.x, this.game.SPRITE_PlayerHub.y);
@@ -423,9 +419,8 @@ PhaserGame.LevelPlay.prototype = {
             this.game.SPRITE_Answer4_ButtonLarge.inputEnabled = false;
         };        
         
-        // PLAY 5050 SOUND
-        //this.sound.play('SOUND-5050', 0.5, false);
-        sound5050.play();
+        
+		this.game.Director.say('5050',1);
         
         this.game.POWERUP_5050--;
         this.refresh_UI ();
@@ -500,9 +495,7 @@ PhaserGame.LevelPlay.prototype = {
     },
         
     update: function () {
-        // TESTING - Least Damnaged HUB
-		//should only check when needed, not on update
-        if(this.game.ticking==true)
+		if(this.game.ticking==true)
 		{
 			
 			if(isNaN(this.game.timetracker))
@@ -536,7 +529,7 @@ PhaserGame.LevelPlay.prototype = {
 		this.timerTextMinutes.setText(this.game.Functions.getFormatedMinutes(this.game.timetracker /1000));
 		
         // MONITOR THE MISSILEFIRE TIMER AND FIRE IF EXCEEDED
-        if (this.game.PAUSED == false){
+        if ((this.game.PAUSED == false)&&((this.Hubs.hubAlive>0))){
             if (this.game.time.now > this.game.DATA_MissileFire_Timer) {            
                 this.Hubs.fireMissile();
                 // debug = this.game.debug.text("FIRE!", 1, 10);
@@ -561,8 +554,14 @@ PhaserGame.LevelPlay.prototype = {
         this.Questions.update();
         this.Hubs.update();
     },
-    
+	
     render: function () {
-    }
+    },
+	exitToMenu:function(){
+		this.game.music.stop();
+		this.game.Director.stopTalking();
+		this.game.state.start('MainMenu',true,false);
+		
+	}
     
 };
