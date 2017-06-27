@@ -26,14 +26,14 @@ PhaserGame.EndGame.prototype = {
         this.text.anchor.set(0.5, 0);
         
         // Scroll Credits for 60 Seconds
-        this.game.add.tween(this.text.anchor).to( { x: 0.5, y:1 }, 60000, Phaser.Easing.Linear.None, true, 0, 0, false);
+        this.game.add.tween(this.text.anchor).to( { x: 0.5, y:1 }, 30000, Phaser.Easing.Linear.None, true, 0, 0, false);
         
-        // Fade Out Background after 61 seconds
-        this.game.time.events.add(61000, this.fadeBackground, this);
+        // Fade Out Background after 31 seconds
+        this.game.time.events.add(31000, this.fadeBackground, this);
         
         
-        // Fade In Coastline Logo after 62 seconds
-        this.game.time.events.add(62000, this.showCoastlineLogo, this);
+        // Fade In Coastline Logo after 32 seconds
+        this.game.time.events.add(32000, this.showCoastlineLogo, this);
         
         console.log('end end');
         
