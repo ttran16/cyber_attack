@@ -57,9 +57,9 @@ PhaserGame.MainMenu.prototype = {
         this.game.counter_AnswersIncorrect = 0;
         
         //POWER UPS
-        this.game.POWERUP_5050 = 50;
-        this.game.POWERUP_Attack = 50;
-        this.game.POWERUP_Restore = 1;
+        this.game.POWERUP_5050 = 3;
+        this.game.POWERUP_Attack = 3;
+        this.game.POWERUP_Restore = 3;
         
         
     },
