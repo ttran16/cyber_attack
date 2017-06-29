@@ -253,6 +253,8 @@ PhaserGame.LevelPlay.prototype = {
     
     
     powerUpChance: function () {
+		
+		//TODO: refactor this.  Not sure what this does
         this.game.PowerUpChances++;
         var x = this.game.rnd.integerInRange(1, 3);
         var y = this.game.rnd.integerInRange(1, 3);
@@ -387,6 +389,7 @@ PhaserGame.LevelPlay.prototype = {
     
     powerUp_5050: function () {
         // HIDE TWO FALSE ANSWERS
+		//TODO: refactor this fucntion
         
         var removeAnswer1 = this.game.CurrentCorrectAnswer;
         var removeAnswer2 = this.game.CurrentCorrectAnswer;

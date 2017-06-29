@@ -108,15 +108,16 @@ Director.prototype = {
 	},
 	startTalking:function(callback)
 	{
-		var myvoice=this['queue'].shift();
-
-		this.narration = this.game.add.audio(myvoice['sound'],myvoice['volume']);
-		if (callback === 'function') { 
-			this.setCallback(callback);
+		if(this['queue'] && this['queue'].length)
+		{
+			var myvoice=this['queue'].shift();
+			this.narration = this.game.add.audio(myvoice['sound'],myvoice['volume']);
+			if (callback === 'function') { 
+				this.setCallback(callback);
+			}
+			this.narration.onStop.add(this.processqueue, this);
+			this.narration.play();
 		}
-		this.narration.onStop.add(this.processqueue, this);
-		this.narration.play();
-		
 	},
 	
 	processqueue: function()
@@ -144,24 +145,18 @@ Director.prototype = {
 			{
 				var index = Math.floor(Math.random() * 7);
 				myvoice['sound'] = 'DIRECTOR-correct' + index;
-				
-				//read instructions
 				break;
 			}
 			case 'incorrect':
 			{
 				var index = Math.floor(Math.random() * 7);
 				myvoice['sound'] = 'DIRECTOR-incorrect' + index;
-				
-				//read instructions
 				break;
 			}
 			case 'start':
 			{
 				var index = Math.floor(Math.random() * 4);
 				myvoice['sound'] = 'DIRECTOR-start' + index;
-				
-				//read instructions
 				break;
 			}
 			default:
@@ -169,8 +164,6 @@ Director.prototype = {
 				
 				var index = Math.floor(Math.random() * 2);
 				myvoice['sound'] = 'DIRECTOR-' + whattosay;
-				
-				//read instructions
 				break;
 				
 			}

@@ -197,7 +197,8 @@ Questions.prototype = {
             
             
             // DAMAGE LOWERED (DAMAGED) TO ATTACK HUB
-			this.LevelPlay.game.AttackHubs[this.LevelPlay.game.DATA_QuestionHub].damage--;
+			//this.LevelPlay.game.AttackHubs[this.LevelPlay.game.DATA_QuestionHub].damage--;
+			this.LevelPlay.Hubs.setDamage(this.LevelPlay.game.DATA_QuestionHub,this.LevelPlay.game.AttackHubs[this.LevelPlay.game.DATA_QuestionHub].damage-1);
 			var bonus=false;
 			var hubhealth = this.LevelPlay.game.AttackHubs[this.LevelPlay.game.DATA_QuestionHub].damage;
 			if (hubhealth == 0) {
@@ -219,8 +220,12 @@ Questions.prototype = {
                 //soundAttackHubHit.play();
 				this.LevelPlay.game.Director.say('AttackHubHit',1);
             }
-            if((!bonus)&&(this.hubAlive>0))
+			console.log('bonus ' + bonus);
+			console.log('hubAlive' + this.LevelPlay.Hubs.hubAlive);
+            if((!bonus)&&(this.LevelPlay.Hubs.hubAlive>0))
 			this.LevelPlay.game.Director.enqueue('correct',1);
+		
+			
             // FADE OUT ANSWER RESPONSES
             this.LevelPlay.game.add.tween(this.LevelPlay.game.GROUP_AnswerResponse).to( { alpha: 0 }, 2250, Phaser.Easing.Linear.None, true, 0, 0, false);
                                     

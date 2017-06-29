@@ -453,7 +453,7 @@ Hubs.prototype = {
 			if(this.LevelPlay.game.AttackHubs[i].damage > 0)
 			{
 				this.hubAlive++;
-				//break;//don't really need to know exact number, as long as more than 1.
+				
 			}
 			
 		}
