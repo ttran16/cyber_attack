@@ -4,7 +4,17 @@ PhaserGame.LevelPlay = function (game) {
 }
 PhaserGame.LevelPlay.prototype = {
         
-    preload: function () {},
+    preload: function () {
+		
+		//this has to be here instead of level preload because the smoke_data was not yet available at that time.
+		console.log(this.game.AttackHubs[0].smoke_data);
+		for (var i = 0; i < 4; i++) { 
+			var smoke_data = this.game.AttackHubs[0].smoke_data['dmg' + i];
+			this.load.spritesheet('SPRITE-AttackHub' + i + '-smoke', 'assets/GFX/SPRITE-AttackHub' + i + '-smoke.png', parseFloat(smoke_data.width), parseFloat(smoke_data.height), parseInt(smoke_data.frames));
+        }
+		
+		
+	},
     
     
     create: function () {
@@ -90,8 +100,57 @@ PhaserGame.LevelPlay.prototype = {
         text.anchor.set(0, 0);
         var text = this.add.text(this.world.width-32, 20, this.game.DATA_LevelStrategy , { font: "15pt Michroma", fill: "#555555", align: "left", wordWrap: true, wordWrapWidth: 460 });
         text.anchor.set(1, 0);
+		
+		
+		
+		//exit prompt
+        this.GROUP_EXITMenu = this.add.group();
+		this.bg_exit = this.add.sprite(0,0,'Exit-BG');
+		this.GROUP_EXITMenu.add(this.bg_exit);
+        
+		this.addButton('Exit-YES', this.exitToMenu, 456,315,this.GROUP_EXITMenu );
+		this.addButton('Exit-NO', this.exitCancel, 616,315,this.GROUP_EXITMenu );
+		
+        
+		this.GROUP_EXITMenu.alpha = 0;
     },
-    
+    exitPrompt:function()
+	{
+		this.game.PREVIOUS_STATE=this.game.STATE;
+		this.game.STATE = 'EXIT';
+		soundSelect.play();
+		this.game.world.bringToTop(this.GROUP_EXITMenu);
+		this.GROUP_EXITMenu.alpha = 1;
+		
+        this.bg_exit.inputEnabled = true;
+	},
+	exitCancel:function()
+	{
+		this.game.STATE=this.game.PREVIOUS_STATE;
+		soundSelect.play();
+		this.GROUP_EXITMenu.alpha = 0;
+        this.bg_exit.inputEnabled = false;
+	},
+	
+	addButton:function(label, callback, x, y, addToGroup)
+	{
+		if(isNaN(this.buttonCount))
+		{
+			this.buttonCount = 0;
+		}
+		
+        btn_new = this.add.sprite(x,y, label);
+        btn_new.anchor.setTo(0, 0);        
+        btn_new.inputEnabled = true;
+        btn_new.input.useHandCursor = true;
+        btn_new.events.onInputDown.add(callback,this);
+		if(addToGroup)
+		{
+			addToGroup.add(btn_new);
+			addToGroup.add(btn_newText);
+		}
+		this.buttonCount++;
+	},
     
     // UI GROUP
     buildGroup_UI: function () {
@@ -191,7 +250,7 @@ PhaserGame.LevelPlay.prototype = {
      
     activate_UI: function () {
         // UI Actions - Mouse Down
-        this.game.ICON_Exit.events.onInputDown.add( function() { this.exitToMenu(); }, this );
+        this.game.ICON_Exit.events.onInputDown.add( function() { this.exitPrompt(); }, this );
         this.game.ICON_Restore.events.onInputDown.add( function() { this.powerUp_Restore(); }, this );
         this.game.ICON_Attack.events.onInputDown.add( function() { this.powerUp_Attack(); }, this );
         this.game.ICON_5050.events.onInputDown.add( function() { this.powerUp_5050(); }, this );
@@ -341,7 +400,7 @@ PhaserGame.LevelPlay.prototype = {
     
     powerUp_Attack: function () {
         // TAKE THE HIGHEST POWER ATTACK HUB OFFLINE
-		if(this.Hubs.hubAlive>0)
+		if(this.Hubs.hubAlive>0&&this.game.ticking)
 		{  //only run this if there is a hub that is alive
 			var atkhubIndex = this.Hubs.strongestHub();
 			this.game.Director.say('AttackHubPowerDown',1);
@@ -389,7 +448,7 @@ PhaserGame.LevelPlay.prototype = {
     
     powerUp_5050: function () {
         // HIDE TWO FALSE ANSWERS
-		//TODO: refactor this fucntion
+		//TODO: refactor this fucntion to allow multiple uses
         
         var removeAnswer1 = this.game.CurrentCorrectAnswer;
         var removeAnswer2 = this.game.CurrentCorrectAnswer;
@@ -469,17 +528,17 @@ PhaserGame.LevelPlay.prototype = {
     
     assistPromptToggle: function() {
         if (this.game.assistPromptToggle == true) {
-            this.game.AttackHubs[0].Sprite.tint = 0xFFD700;
-            this.game.AttackHubs[1].Sprite.tint = 0xFFD700;
-            this.game.AttackHubs[2].Sprite.tint = 0xFFD700;
-            this.game.AttackHubs[3].Sprite.tint = 0xFFD700;
+            //this.game.AttackHubs[0].Sprite.tint = 0xFFD700;
+            //this.game.AttackHubs[1].Sprite.tint = 0xFFD700;
+            //this.game.AttackHubs[2].Sprite.tint = 0xFFD700;
+            //this.game.AttackHubs[3].Sprite.tint = 0xFFD700;
             this.game.GROUP_AttackHubHighlights.alpha = 1;
             this.game.assistPromptToggle = false;
         }else{
-            this.game.AttackHubs[0].Sprite.tint = 0xffffff;
-            this.game.AttackHubs[1].Sprite.tint = 0xffffff;
-            this.game.AttackHubs[2].Sprite.tint = 0xffffff;
-            this.game.AttackHubs[3].Sprite.tint = 0xffffff;
+            //this.game.AttackHubs[0].Sprite.tint = 0xffffff;
+            //this.game.AttackHubs[1].Sprite.tint = 0xffffff;
+            //this.game.AttackHubs[2].Sprite.tint = 0xffffff;
+            //this.game.AttackHubs[3].Sprite.tint = 0xffffff;
             this.game.GROUP_AttackHubHighlights.alpha = 0;
             this.game.assistPromptToggle = true;
         }
@@ -563,6 +622,7 @@ PhaserGame.LevelPlay.prototype = {
 	exitToMenu:function(){
 		this.game.music.stop();
 		this.game.Director.stopTalking();
+		soundSelect.play();
 		this.game.state.start('MainMenu',true,false);
 		
 	}

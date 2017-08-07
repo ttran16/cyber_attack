@@ -28,6 +28,10 @@ Director.prototype = {
         this.game.load.audio('DIRECTOR-incorrect4','assets/VOICE/Incorrect-WeCantLoseThis.mp3');
         this.game.load.audio('DIRECTOR-incorrect5','assets/VOICE/Incorrect-You Awake in There.mp3');
         this.game.load.audio('DIRECTOR-incorrect6','assets/VOICE/Incorrect-YouNeedtoPickUpthePace.mp3');
+		 
+		//incorrect
+		this.game.load.audio('DIRECTOR-wrong','assets/SFX/SOUND-Incorrect.mp3');		
+		
 		
 		//start
 		this.game.load.audio('DIRECTOR-start0','assets/VOICE/Start-LetsGetStarted.mp3');       
@@ -51,8 +55,7 @@ Director.prototype = {
 		//level3
 		this.game.load.audio('DIRECTOR-level3failure','assets/VOICE/LEVEL3FAILURE.mp3');
         this.game.load.audio('DIRECTOR-level3scenario','assets/VOICE/LEVEL3SCENARIO.mp3');
-        this.game.load.audio('DIRECTOR-level3success','assets/VOICE/LEVEL3SUCCESS.mp3');
-        
+        this.game.load.audio('DIRECTOR-level3success','assets/VOICE/LEVEL3SUCCESS.mp3');        
 		
 		
 		//level4
@@ -143,13 +146,13 @@ Director.prototype = {
 			
 			case 'correct':
 			{
-				var index = Math.floor(Math.random() * 7);
+				var index = Math.floor(Math.random() * 21);
 				myvoice['sound'] = 'DIRECTOR-correct' + index;
 				break;
 			}
 			case 'incorrect':
 			{
-				var index = Math.floor(Math.random() * 7);
+				var index = Math.floor(Math.random() * 21);
 				myvoice['sound'] = 'DIRECTOR-incorrect' + index;
 				break;
 			}

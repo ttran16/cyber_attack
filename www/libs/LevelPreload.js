@@ -72,8 +72,11 @@ PhaserGame.LevelPreload.prototype = {
         this.load.image('SPRITE-AttackHub1','assets/GFX/SPRITE-AttackHub1.png');
         this.load.image('SPRITE-AttackHub2','assets/GFX/SPRITE-AttackHub2.png');
         this.load.image('SPRITE-AttackHub3','assets/GFX/SPRITE-AttackHub3.png');
-        
-        this.load.image('SPRITE-AttackHub-Highlight','assets/GFX/SPRITE-AttackHub-Highlight.png');
+
+        this.load.image('SPRITE-AttackHub0Highlight','assets/GFX/SPRITE-AttackHub0Highlight.png');                
+        this.load.image('SPRITE-AttackHub1Highlight','assets/GFX/SPRITE-AttackHub1Highlight.png');                
+        this.load.image('SPRITE-AttackHub2Highlight','assets/GFX/SPRITE-AttackHub2Highlight.png');                
+        this.load.image('SPRITE-AttackHub3Highlight','assets/GFX/SPRITE-AttackHub3Highlight.png');
                 
         //Load Missile Sprites
         this.load.image('SPRITE-Missile','assets/GFX/SPRITE-Missile.png');
@@ -126,6 +129,11 @@ PhaserGame.LevelPreload.prototype = {
         this.load.audio('MUSIC-LevelIntro','assets/MUSIC/MUSIC-LevelIntro.mp3');
         this.load.audio('VOICE-SCENARIO','assets/VOICE/LEVEL' + this.game.SETUP_GameLevel + 'SCENARIO.mp3');
 		
+		//Load exit panel
+		this.load.image('Exit-BG','assets/GFX/ExitScreen.png');
+        
+		this.load.image('Exit-YES','assets/GFX/ExitYes.png');
+		this.load.image('Exit-NO','assets/GFX/ExitNo.png');
     },
     
     
@@ -154,6 +162,28 @@ PhaserGame.LevelPreload.prototype = {
         
         // PLAYER HUB Setup
         var node = this.game.SETUP_Level.getElementsByTagName("setup");
+		var smokes = node[0].getElementsByTagName("smokes")[0].getElementsByTagName('smoke');
+		
+
+		var SmokeData = {};
+		for(var j=0; j < smokes.length; j++)
+		{
+			var smoke = smokes[j];
+			var _smokeData={};
+			_smokeData['dmg'] = smoke.getElementsByTagName("dmg")[0].childNodes[0].nodeValue;
+			_smokeData['fps'] = smoke.getElementsByTagName("fps")[0].childNodes[0].nodeValue;
+			_smokeData['width'] = smoke.getElementsByTagName("width")[0].childNodes[0].nodeValue;
+			_smokeData['height'] = smoke.getElementsByTagName("height")[0].childNodes[0].nodeValue;
+			_smokeData['frames'] = smoke.getElementsByTagName("frames")[0].childNodes[0].nodeValue;
+			_smokeData['offsetX'] = smoke.getElementsByTagName("offsetX")[0].childNodes[0].nodeValue;
+			_smokeData['offsetY'] = smoke.getElementsByTagName("offsetY")[0].childNodes[0].nodeValue;
+			_smokeData['alpha'] = smoke.getElementsByTagName("alpha")[0].childNodes[0].nodeValue;
+			SmokeData['dmg' + _smokeData['dmg']] = _smokeData;
+		}
+		
+		
+		
+		
         this.game.SPRITE_PlayerHub_Image = (node[0].getElementsByTagName("playerHubImage")[0].childNodes[0].nodeValue);    
         this.game.SPRITE_PlayerHub_X = (node[0].getElementsByTagName("playerHubX")[0].childNodes[0].nodeValue);
         this.game.SPRITE_PlayerHub_Y = (node[0].getElementsByTagName("playerHubY")[0].childNodes[0].nodeValue);
@@ -169,17 +199,22 @@ PhaserGame.LevelPreload.prototype = {
             var X = (node[i].getElementsByTagName("x")[0].childNodes[0].nodeValue);
             var Y = (node[i].getElementsByTagName("y")[0].childNodes[0].nodeValue);
             var dmg = (node[i].getElementsByTagName("dmg")[0].childNodes[0].nodeValue);
-
+			
 			
 			//declare hub
 			var AttackHub = {};
+			this.game.AttackHubs.push(AttackHub);
             AttackHub['x'] = X;
 			AttackHub['y'] = Y;
 			AttackHub['index'] = i;
 			AttackHub['damage'] = dmg;
 			AttackHub['max_damage'] = 3;//this depends on the pregenerated graphics
+			AttackHub['smoke_data']={};
+			
+			AttackHub['smoke_data'] = SmokeData;
+			
+			
 			//add to array
-			this.game.AttackHubs.push(AttackHub);
             //this.game.DATA_AttackHubCount++;
 			
         }

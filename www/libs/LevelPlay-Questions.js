@@ -220,8 +220,7 @@ Questions.prototype = {
                 //soundAttackHubHit.play();
 				this.LevelPlay.game.Director.say('AttackHubHit',1);
             }
-			console.log('bonus ' + bonus);
-			console.log('hubAlive' + this.LevelPlay.Hubs.hubAlive);
+			
             if((!bonus)&&(this.LevelPlay.Hubs.hubAlive>0))
 			this.LevelPlay.game.Director.enqueue('correct',1);
 		
@@ -260,7 +259,12 @@ Questions.prototype = {
             
             // PLAY INCORRECT ANSWER SOUND EFFECT
             //this.LevelPlay.sound.play('SOUND-Incorrect', 0.5, false);
-			this.LevelPlay.game.Director.say('incorrect',1);
+			//this.LevelPlay.game.Director.say('incorrect',1);
+			
+			this.LevelPlay.game.Director.enqueue('wrong',1);
+			this.LevelPlay.game.Director.enqueue('incorrect',1);
+			this.LevelPlay.game.Director.startTalking();
+			
             var hubRepaired = -1;
             var hubRestored = -1;   
             //soundIncorrect.play();
@@ -300,13 +304,13 @@ Questions.prototype = {
 			
 			
             // SHOW APPROPRIATE "REPAIR" MESSAGE
-            if (hubRestored >= 0 && hubRepaired>= 0) {
+            if (hubRestored >= 0 ) {
                 // SHOW "RESTORED" MESSAGE
                 this.LevelPlay.game.SCREEN_IncorrectAnswerText2.alpha = 1;
                 
                 // PLAY POWERUP SOUND
                 //this.LevelPlay.sound.play('SOUND-AttackHubPowerUp', 0.5, false);
-                soundAttackHubPowerUp.play();
+                //soundAttackHubPowerUp.play();
                 
                 // PLAY HUBREPAIR ANIMATION
                 this.LevelPlay.game.GROUP_HubRepair.alpha = 1;

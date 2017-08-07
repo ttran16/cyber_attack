@@ -66,18 +66,33 @@ Hubs.prototype = {
         // ATTACK HUBS
         this.LevelPlay.game.GROUP_AttackHubHighlights = this.LevelPlay.add.group();
         this.LevelPlay.game.GROUP_AttackHubs = this.LevelPlay.add.group();  
-		console.log("hub count is" + this.LevelPlay.game.AttackHubs.length);
 		this.hubAlive = this.LevelPlay.game.AttackHubs.length;
 		
 		
 		for (var i = 0; i < this.LevelPlay.game.AttackHubs.length; i++) { 
-			//load attack hub at full health
+			//load attack hub
+
+			var smoke_data = this.LevelPlay.game.AttackHubs[i].smoke_data['dmg' + this.LevelPlay.game.AttackHubs[i].damage];
+			
+			var AttackHubSmoke = this.LevelPlay.add.sprite(
+				this.LevelPlay.game.AttackHubs[i].x - parseFloat(smoke_data.offsetX), 
+				this.LevelPlay.game.AttackHubs[i].y - parseFloat(smoke_data.offsetY), 
+				'SPRITE-AttackHub' + this.LevelPlay.game.AttackHubs[i].damage + '-smoke'
+			);
+			
+			AttackHubSmoke.anchor.setTo(0.5,0.5);
+			AttackHubSmoke.animations.add('smoke');		
+			AttackHubSmoke.animations.play('smoke', parseFloat(smoke_data.fps), true);
+			AttackHubSmoke.alpha=parseFloat(smoke_data.alpha);
+		
+		
 			var AttackHubSprite = this.LevelPlay.add.sprite(
 					this.LevelPlay.game.AttackHubs[i].x, 
 					this.LevelPlay.game.AttackHubs[i].y,
 					'SPRITE-AttackHub' + this.LevelPlay.game.AttackHubs[i].damage
-				);
-				
+				);		
+		
+		
 			AttackHubSprite.anchor.setTo(
 				0.5, 
 				0.5
@@ -95,19 +110,27 @@ Hubs.prototype = {
 				this 
 			);
 			
+			
+			this.LevelPlay.game.GROUP_AttackHubs.add(AttackHubSmoke);
 			this.LevelPlay.game.GROUP_AttackHubs.add(AttackHubSprite);
+			
 			//load attackhub highlight
 			var AttackHubSpriteHightlight = 
 				this.LevelPlay.add.sprite(
 					this.LevelPlay.game.AttackHubs[i].x, 
 					this.LevelPlay.game.AttackHubs[i].y, 
-					'SPRITE-AttackHub-Highlight'
+					'SPRITE-AttackHub' + this.LevelPlay.game.AttackHubs[i].damage + 'Highlight'
 				);
 
 			AttackHubSpriteHightlight.anchor.setTo(0.5, 0.5);
-
+			
+			
+			
+			
+			this.LevelPlay.game.AttackHubs[i]['Smoke'] = AttackHubSmoke;
 			this.LevelPlay.game.GROUP_AttackHubHighlights.add(AttackHubSpriteHightlight);
 			this.LevelPlay.game.AttackHubs[i]['Sprite'] = AttackHubSprite;
+			
 			this.LevelPlay.game.AttackHubs[i]['SpriteHightlight'] = AttackHubSpriteHightlight;
 
             
@@ -212,8 +235,8 @@ Hubs.prototype = {
     
         
     fireMissile: function () {
-        console.log('firing missle');
-		console.log(this);
+        //console.log('firing missle');
+		//console.log(this);
         // SET NEXT ATTACKING HUB
         // SELECT A HUB AT RANDOM, IF HUB DAMAGE GTE 1, SET AS ATTACKER
         var x = 0;
@@ -277,7 +300,7 @@ Hubs.prototype = {
     },
     
     hubHit: function () {
-		console.log('hubhit');
+		//console.log('hubhit');
         // KILL ENEMYMISSILE ON HIT - SHOULD THIS BE A HIDE?
         this.LevelPlay.game.SPRITE_EnemyMissile.kill();
         this.LevelPlay.game.add.tween(this.LevelPlay.game.GROUP_MissileTrails).to( { alpha: 0 }, 1000, Phaser.Easing.Linear.None, true, 0, 0, false);
@@ -439,7 +462,14 @@ Hubs.prototype = {
     
     setDamage: function (HUB, DMG) {
         // SET THE DAMAGE TO THE ATTACKING HUB
+		this.LevelPlay.game.AttackHubs[HUB].Smoke.loadTexture('SPRITE-AttackHub' + DMG + '-smoke'); 
+		this.LevelPlay.game.AttackHubs[HUB].Smoke.animations.add('smoke');
+		console.log('smoke fps: ' + parseFloat(this.LevelPlay.game.AttackHubs[HUB].smoke_data['dmg'+DMG].fps));
+		this.LevelPlay.game.AttackHubs[HUB].Smoke.animations.play('smoke', parseFloat(this.LevelPlay.game.AttackHubs[HUB].smoke_data['dmg'+DMG].fps), true);
+		this.LevelPlay.game.AttackHubs[HUB].Smoke.alpha= parseFloat(this.LevelPlay.game.AttackHubs[HUB].smoke_data['dmg'+DMG].alpha);
 		this.LevelPlay.game.AttackHubs[HUB].Sprite.loadTexture('SPRITE-AttackHub' + DMG); 
+		
+		
 		if(DMG <=0 )
 		{
 			this.LevelPlay.game.AttackHubs[HUB].Sprite.alpha = .5;
@@ -457,7 +487,7 @@ Hubs.prototype = {
 			}
 			
 		}
-		console.log(this.hubAlive);
+		//console.log(this.hubAlive);
         if (this.hubAlive <= 0) {
 			this.LevelPlay.game.Director.setCallback(this.LevelPlay.levelSuccess);
             //this.LevelPlay.levelSuccess();

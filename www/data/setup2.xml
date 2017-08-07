@@ -7,6 +7,52 @@
 	<missileRateLow>4</missileRateLow>
 	<missileRateHigh>8</missileRateHigh>
     <missileDamage>.25</missileDamage>
+	<smokes>
+		<smoke>
+			<dmg>0</dmg>
+			<fps>20</fps>
+			<width>130</width>
+			<height>127.857</height>
+			<frames>63</frames>
+			<offsetX>10</offsetX>
+			<offsetY>30</offsetY>
+			<alpha>0.75</alpha>
+		
+		</smoke>		
+		<smoke>
+			<dmg>1</dmg>
+			<fps>20</fps>
+			<width>130</width>
+			<height>127.857</height>
+			<frames>63</frames>
+			<offsetX>10</offsetX>
+			<offsetY>30</offsetY>
+			<alpha>0.75</alpha>
+		
+		</smoke>		
+		<smoke>
+			<dmg>2</dmg>
+			<fps>20</fps>
+			<width>130</width>
+			<height>127.857</height>
+			<frames>63</frames>
+			<offsetX>10</offsetX>
+			<offsetY>30</offsetY>
+			<alpha>0.5</alpha>
+		
+		</smoke>		
+		<smoke>
+			<dmg>3</dmg>
+			<fps>20</fps>
+			<width>130</width>
+			<height>127.857</height>
+			<frames>63</frames>
+			<offsetX>10</offsetX>
+			<offsetY>30</offsetY>
+			<alpha>0</alpha>
+		
+		</smoke>
+	</smokes>
 </setup>
 <attackHubs>
 	<hubLocation>
